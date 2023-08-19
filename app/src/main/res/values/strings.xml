@@ -1,0 +1,25 @@
+<resources>
+    <string name="app_name">eventifyAppTesting</string>
+    <string name="hello">Hey there, </string>
+    <string name="create_account">Create an Account , </string>
+    <string name="welcome">Welcome Back, </string>
+    <string name="first_name">First Name </string>
+    <string name="last_name">Last Name </string>
+    <string name="password">Password</string>
+    <string name="hide_password">Hide password</string>
+    <string name="show_password">Show password</string>
+    <string name="email">E-Mail or phone number </string>
+    <string name="first_nameTR">İsim </string>
+    <string name="last_nameTR">Soy isim </string>
+    <string name="emailTR">E-Posta ya da telefon numarası </string>
+    <string name="passwordTR">Parola</string>
+    <string name="hide_passwordTR">Parolayı gizle</string>
+    <string name="show_passwordTR">Parolayı göster</string>
+    <string name="terms_and_conditionsTR">Devam ederek Gizlilik Politikamızı ve Kullanım Koşullarımızı kabul etmiş olursunuz.</string>
+    <string name="terms_and_conditions_headingTR">Kullanım Koşulları</string>
+    <string name ="registerTR">Kayıt Ol</string>
+    <string name ="loginTR">Giriş Yap</string>
+    <string name ="forgot_passwordTR">Şifrenizi mi unuttunuz?</string>
+    <string name ="other_loginOptionsTR">Diğer giriş seçenekleri</string>
+    <string name ="already_have_account">Zaten hesabınız var mı? Giriş yap</string>
+</resources>
