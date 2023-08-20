@@ -15,7 +15,9 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.rounded.AccountBox
 import androidx.compose.material.icons.rounded.Lock
+import androidx.compose.material3.Button
 import androidx.compose.material3.Surface
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -31,12 +33,16 @@ import com.omrilhn.eventifyappalpha.components.DividerTextComponent
 import com.omrilhn.eventifyappalpha.components.InputTextField
 import com.omrilhn.eventifyappalpha.components.PasswordTextField
 import com.omrilhn.eventifyappalpha.components.UnderlinedTextComponent
+import com.omrilhn.eventifyappalpha.model.UserInfo
 import com.omrilhn.eventifyappalpha.navigation.BackButtonHandler
 import com.omrilhn.eventifyappalpha.navigation.EventifyAppRouter
 import com.omrilhn.eventifyappalpha.navigation.Screen
+import com.omrilhn.eventifyappalpha.network.RestApiManager
 
 @Composable
 fun LoginScreen() {
+    val restApiManager = RestApiManager()
+
     Box(
         modifier = Modifier.fillMaxSize(),
         contentAlignment = Alignment.Center
@@ -78,9 +84,24 @@ fun LoginScreen() {
                 UnderlinedTextComponent(value = stringResource(id = R.string.forgot_passwordTR))
                 Spacer(modifier = Modifier.height(20.dp))
 
-                ButtonComponent(
-                    value = stringResource(id = R.string.loginTR),
-                    onButtonClicked = { /*TODO*/ })
+//                ButtonComponent(
+//                    value = stringResource(id = R.string.loginTR),
+//                    onButtonClicked = {
+//                        val userInfo = UserInfo("email"
+//                        ,"password",true,"returnUrl")
+//                    restApiManager.addUser(userData =  userInfo) { it ->
+//                    }
+//                    })
+                Row(modifier = Modifier.fillMaxWidth().background(color = Color.Black),horizontalArrangement = Arrangement.Center,
+                    verticalAlignment = Alignment.CenterVertically){
+                Button(modifier = Modifier.fillMaxWidth(), onClick = {
+                    val userInfo = UserInfo("email"
+                        ,"password",true,"returnUrl")
+                    restApiManager.addUser(userData =  userInfo) { it ->
+                    }
+                }) {
+
+                }}
                 DividerTextComponent()
                 ClickableLoginTextComponent(tryingToLogin = false, onTextSelected = {
                     EventifyAppRouter.navigateTo(Screen.SignUpScreen)

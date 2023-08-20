@@ -76,7 +76,7 @@ fun SignUpScreen(){
                 onTextSelected = {
                     EventifyAppRouter.navigateTo(Screen.TermsAndConditionsScreen)
                 })
-            Spacer(modifier = Modifier.height(80.dp))
+            Spacer(modifier = Modifier.height(40.dp))
 //            ButtonComponent(value = stringResource(R.string.registerTR)
 //                )
             DividerTextComponent()
