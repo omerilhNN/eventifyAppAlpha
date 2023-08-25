@@ -1,4 +1,4 @@
-package com.omrilhn.eventifyappalpha.screens
+package com.omrilhn.eventifyappalpha.presentation.login
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
@@ -15,9 +15,7 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.rounded.AccountBox
 import androidx.compose.material.icons.rounded.Lock
-import androidx.compose.material3.Button
 import androidx.compose.material3.Surface
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -26,6 +24,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavController
 import com.omrilhn.eventifyappalpha.R
 import com.omrilhn.eventifyappalpha.components.ButtonComponent
 import com.omrilhn.eventifyappalpha.components.ClickableLoginTextComponent
@@ -33,14 +32,12 @@ import com.omrilhn.eventifyappalpha.components.DividerTextComponent
 import com.omrilhn.eventifyappalpha.components.InputTextField
 import com.omrilhn.eventifyappalpha.components.PasswordTextField
 import com.omrilhn.eventifyappalpha.components.UnderlinedTextComponent
-import com.omrilhn.eventifyappalpha.model.UserInfo
-import com.omrilhn.eventifyappalpha.navigation.BackButtonHandler
 import com.omrilhn.eventifyappalpha.navigation.EventifyAppRouter
 import com.omrilhn.eventifyappalpha.navigation.Screen
 import com.omrilhn.eventifyappalpha.network.RestApiManager
 
 @Composable
-fun LoginScreen() {
+fun LoginScreen(navController: NavController) {
     val restApiManager = RestApiManager()
 
     Box(
@@ -102,9 +99,4 @@ fun LoginScreen() {
 //    BackButtonHandler {
 //        EventifyAppRouter.navigateTo(Screen.SignUpScreen)
 //    }
-}
-@Preview
-@Composable
-fun LoginScreenPreview() {
-    LoginScreen()
 }

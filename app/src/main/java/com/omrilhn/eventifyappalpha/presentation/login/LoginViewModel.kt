@@ -1,4 +1,4 @@
-package com.omrilhn.eventifyappalpha.vm
+package com.omrilhn.eventifyappalpha.presentation.login
 
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf

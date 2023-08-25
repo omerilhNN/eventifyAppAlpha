@@ -8,7 +8,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import com.omrilhn.eventifyappalpha.navigation.EventifyAppRouter
 import com.omrilhn.eventifyappalpha.navigation.Screen
-import com.omrilhn.eventifyappalpha.screens.LoginScreen
+import com.omrilhn.eventifyappalpha.presentation.login.LoginScreen
 import com.omrilhn.eventifyappalpha.screens.SignUpScreen
 import com.omrilhn.eventifyappalpha.screens.TermsAndConditionsScreen
 
