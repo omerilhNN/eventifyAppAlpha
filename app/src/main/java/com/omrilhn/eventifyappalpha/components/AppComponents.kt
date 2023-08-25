@@ -52,11 +52,11 @@ import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.omrilhn.eventifyappalpha.R
-import com.omrilhn.eventifyappalpha.ui.theme.BgColor
-import com.omrilhn.eventifyappalpha.ui.theme.GrayColor
-import com.omrilhn.eventifyappalpha.ui.theme.Primary
-import com.omrilhn.eventifyappalpha.ui.theme.Secondary
-import com.omrilhn.eventifyappalpha.ui.theme.TextColor
+import com.omrilhn.eventifyappalpha.presentation.theme.BgColor
+import com.omrilhn.eventifyappalpha.presentation.theme.GrayColor
+import com.omrilhn.eventifyappalpha.presentation.theme.Primary
+import com.omrilhn.eventifyappalpha.presentation.theme.Secondary
+import com.omrilhn.eventifyappalpha.presentation.theme.TextColor
 
 @Composable
 fun NormalTextComponent(value:String){

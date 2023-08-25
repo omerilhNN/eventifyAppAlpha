@@ -6,8 +6,6 @@ import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 
 class LoginViewModel: ViewModel() {
-    var email by mutableStateOf("")
-        private set
 
 
 }

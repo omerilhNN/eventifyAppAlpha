@@ -1,4 +1,4 @@
-package com.omrilhn.eventifyappalpha.ui.theme
+package com.omrilhn.eventifyappalpha.presentation.theme
 
 import android.app.Activity
 import android.os.Build

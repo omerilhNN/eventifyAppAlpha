@@ -1,4 +1,4 @@
-package com.omrilhn.eventifyappalpha.ui.theme
+package com.omrilhn.eventifyappalpha.presentation.theme
 
 import androidx.compose.material3.Typography
 import androidx.compose.ui.text.TextStyle

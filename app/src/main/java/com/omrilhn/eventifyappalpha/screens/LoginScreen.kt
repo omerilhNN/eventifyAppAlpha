@@ -87,22 +87,8 @@ fun LoginScreen() {
                 ButtonComponent(
                     value = stringResource(id = R.string.loginTR),
                     onButtonClicked = {
-                        val userInfo = UserInfo("email"
-                        ,"password",true,"returnUrl")
-                    restApiManager.addUser(userData =  userInfo) { it ->
-
-                        }
+                        //call viewmodel
                     })
-//                Row(modifier = Modifier.fillMaxWidth().background(color = Color.Black),horizontalArrangement = Arrangement.Center,
-//                    verticalAlignment = Alignment.CenterVertically){
-//                Button(modifier = Modifier.fillMaxWidth(), onClick = {
-//                    val userInfo = UserInfo("email"
-//                        ,"password",true,"returnUrl")
-//                    restApiManager.addUser(userData =  userInfo) { it ->
-//                    }
-//                }) {
-//
-//                }}
                 DividerTextComponent()
                 ClickableLoginTextComponent(tryingToLogin = false, onTextSelected = {
                     EventifyAppRouter.navigateTo(Screen.SignUpScreen)

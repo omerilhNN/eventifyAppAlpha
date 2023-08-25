@@ -8,13 +8,16 @@ import retrofit2.converter.gson.GsonConverterFactory
 object ServiceBuilder {
     private val client = OkHttpClient.Builder().build()
 
-    private val retrofit = Retrofit.Builder()
-        .baseUrl(BASE_URL) // change this IP for testing by your actual machine IP
-        .addConverterFactory(GsonConverterFactory.create())
-        .client(client)
-        .build()
-
-    fun<T> buildService(service: Class<T>): T{
-        return retrofit.create(service)
+    private val retrofit : Retrofit by lazy{
+        Retrofit.Builder()
+            .baseUrl(BASE_URL) // change this IP for testing by your actual machine IP
+            .addConverterFactory(GsonConverterFactory.create())
+            .client(client)
+            .build()
     }
+
+    val restApiService : RestApi by lazy{
+        retrofit.create(RestApi::class.java)
+    }
+
 }

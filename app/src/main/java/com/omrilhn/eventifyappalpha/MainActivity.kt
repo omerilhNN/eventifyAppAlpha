@@ -11,7 +11,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import com.omrilhn.eventifyappalpha.app.EventifyApp
-import com.omrilhn.eventifyappalpha.ui.theme.EventifyAppAlphaTheme
+import com.omrilhn.eventifyappalpha.presentation.theme.EventifyAppAlphaTheme
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
