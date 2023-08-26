@@ -20,6 +20,14 @@ private val DarkColorScheme = darkColorScheme(
     secondary = Secondary,
     tertiary = AccentColor
 )
+private val DarkColorPalette = darkColorScheme(
+    primary = GreenAccent,
+    background = DarkGray,
+    onBackground = TextWhite,
+    onPrimary = DarkGray,
+    surface = MediumGray,
+    onSurface = LightGray
+)
 
 private val LightColorScheme = lightColorScheme(
     primary = Primary,
@@ -62,8 +70,9 @@ fun EventifyAppAlphaTheme(
     }
 
     MaterialTheme(
-        colorScheme = colorScheme,
+        colorScheme = DarkColorPalette,
         typography = Typography,
-        content = content
+        content = content,
+        shapes = Shapes
     )
 }

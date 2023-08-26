@@ -19,19 +19,18 @@ fun EventifyApp() {
         color = Color.White
     ) {
 
-        Crossfade(targetState = EventifyAppRouter.currentScreen, label = ""){ currentState ->
-            when (currentState.value) {
-                is Screen.SignUpScreen -> {
-                    SignUpScreen()
-                }
-                is Screen.TermsAndConditionsScreen -> {
-                   TermsAndConditionsScreen()
-                }
-                is Screen.LoginScreen -> {
-                    LoginScreen()
-                }
-            }
-        }
+//        Crossfade(targetState = EventifyAppRouter.currentScreen, label = ""){ currentState ->
+//            when (currentState.value) {
+//                is Screen.SignUpScreen -> {
+//                    SignUpScreen()
+//                }
+//                is Screen.TermsAndConditionsScreen -> {
+//                   TermsAndConditionsScreen()
+//                }
+//                is Screen.LoginScreen -> {
+//                }
+//            }
+//        }
 
     }
 }

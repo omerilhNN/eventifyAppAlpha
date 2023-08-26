@@ -10,4 +10,12 @@ val AccentColor = Color(0xFFC58BF2)
 val GrayColor = Color(0xFF786F72)
 val WhiteColor = Color(0xFFFFFFFF)
 
+val DarkGray = Color(0xFF202020)
+val MediumGray = Color(0xFF404040)
+val LightGray = Color(0xFF606060)
+val TextWhite = Color(0xFFEEEEEE)
+val HintGray = Color(0xFF6D6D6D)
+val TextGray = Color(0xFFA6A6A6)
+val GreenAccent = Color(0xFF08FF04)
+
 val BgColor = Color(0xFFF8F8F8)
