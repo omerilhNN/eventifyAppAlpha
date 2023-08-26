@@ -35,6 +35,7 @@ import com.omrilhn.eventifyappalpha.components.UnderlinedTextComponent
 import com.omrilhn.eventifyappalpha.navigation.EventifyAppRouter
 import com.omrilhn.eventifyappalpha.navigation.Screen
 import com.omrilhn.eventifyappalpha.network.RestApiManager
+import com.omrilhn.eventifyappalpha.presentation.components.StandardTextField
 
 @Composable
 fun LoginScreen(navController: NavController) {
@@ -66,6 +67,7 @@ fun LoginScreen(navController: NavController) {
 
                 Spacer(modifier = Modifier.height(20.dp))
 
+                StandardTextField(onValueChange = )
                 InputTextField(
                     labelValue = stringResource(id = R.string.emailTR),
                     imageResource = Icons.Rounded.AccountBox, modifier = Modifier.fillMaxWidth()
