@@ -78,7 +78,12 @@ dependencies {
     //GSON converter
     implementation ("com.squareup.retrofit2:converter-gson:2.9.0")
 
-    implementation("androidx.compose.material:material-icons-extended:1.5.0")
+    // Compose dependencies
+    implementation ("androidx.navigation:navigation-compose:2.7.1")
+    implementation ("com.google.accompanist:accompanist-flowlayout:0.17.0")
+    implementation ("androidx.compose.material:material-icons-extended:1.5.0")
+
+
 
     implementation("androidx.core:core-ktx:1.10.1")
     implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.6.1")

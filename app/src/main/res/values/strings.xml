@@ -19,6 +19,7 @@
     <string name="terms_and_conditions_headingTR">Kullanım Koşulları</string>
     <string name ="registerTR">Kayıt Ol</string>
     <string name ="loginTR">Giriş Yap</string>
+    <string name ="login_hintTR">E-Mail</string>
     <string name ="forgot_passwordTR">Şifrenizi mi unuttunuz?</string>
     <string name ="other_loginOptionsTR">Diğer giriş seçenekleri</string>
     <string name ="already_have_account">Zaten hesabınız var mı? Giriş yap</string>
