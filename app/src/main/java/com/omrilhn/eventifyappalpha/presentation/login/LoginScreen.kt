@@ -38,7 +38,7 @@ import com.omrilhn.eventifyappalpha.network.RestApiManager
 
 @Composable
 fun LoginScreen(navController: NavController) {
-    val restApiManager = RestApiManager()
+
 
     Box(
         modifier = Modifier.fillMaxSize(),
