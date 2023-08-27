@@ -1,4 +1,4 @@
-package com.omrilhn.eventifyappalpha.presentation.login
+package com.omrilhn.eventifyappalpha.presentation.register
 
 import androidx.compose.runtime.State
 import androidx.compose.runtime.mutableStateOf
@@ -9,7 +9,13 @@ import kotlinx.coroutines.flow.StateFlow
 import javax.inject.Inject
 
 @HiltViewModel
-class LoginViewModel @Inject constructor(): ViewModel() {
+class RegisterViewModel @Inject constructor(): ViewModel() {
+
+    private val _nameText = MutableStateFlow<String>("")
+    val nameText :StateFlow<String> get() = _nameText
+
+    private val _surnameText = MutableStateFlow<String>("")
+    val surname :StateFlow<String> get() = _surnameText
 
     private val _emailText = MutableStateFlow<String>("")
     val emailText :StateFlow<String> get() = _emailText
@@ -40,11 +46,7 @@ class LoginViewModel @Inject constructor(): ViewModel() {
     fun setIsPasswordError(error:String){
         _passwordError.value = error
     }
-     fun setIsEmailError(error:String){
+    fun setIsEmailError(error:String){
         _emailError.value = error
     }
-
-
-    
-
 }

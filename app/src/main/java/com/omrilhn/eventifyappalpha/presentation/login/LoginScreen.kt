@@ -1,7 +1,6 @@
 package com.omrilhn.eventifyappalpha.presentation.login
 
 import androidx.compose.foundation.Image
-import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -13,38 +12,26 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.rounded.AccountBox
-import androidx.compose.material.icons.rounded.Lock
+import androidx.compose.material3.Button
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.SpanStyle
 import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.withStyle
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import com.omrilhn.eventifyappalpha.R
-import com.omrilhn.eventifyappalpha.components.ButtonComponent
-import com.omrilhn.eventifyappalpha.components.ClickableLoginTextComponent
 import com.omrilhn.eventifyappalpha.components.DividerTextComponent
-import com.omrilhn.eventifyappalpha.components.InputTextField
-import com.omrilhn.eventifyappalpha.components.PasswordTextField
-import com.omrilhn.eventifyappalpha.components.UnderlinedTextComponent
-import com.omrilhn.eventifyappalpha.navigation.EventifyAppRouter
 import com.omrilhn.eventifyappalpha.navigation.Screen
-import com.omrilhn.eventifyappalpha.network.RestApiManager
 import com.omrilhn.eventifyappalpha.presentation.components.StandardTextField
 import com.omrilhn.eventifyappalpha.presentation.theme.SpaceLarge
 import com.omrilhn.eventifyappalpha.presentation.theme.SpaceMedium
@@ -56,20 +43,22 @@ fun LoginScreen(
     viewModel: LoginViewModel = hiltViewModel()
 ) {
     // **********************************************\\
-    val usernameText by viewModel.usernameText.collectAsState()
+    val usernameText by viewModel.emailText.collectAsState()
     val passwordText by viewModel.passwordText.collectAsState()
 
     Box(
-        modifier = Modifier.fillMaxSize()
+        modifier = Modifier
+            .fillMaxSize()
             .padding(
-                start =SpaceLarge ,
+                start = SpaceLarge,
                 end = SpaceLarge,
                 top = SpaceLarge,
                 bottom = 50.dp
-                )
+            )
     ) {
             Column(verticalArrangement = Arrangement.Center,
-                modifier = Modifier.fillMaxSize()
+                modifier = Modifier
+                    .fillMaxSize()
                     .padding(SpaceMedium)
                     .align(Alignment.Center)) {
                 Row(
@@ -90,8 +79,9 @@ fun LoginScreen(
                 //Username field
                StandardTextField(text = usernameText,
                    onValueChange = {
-                       viewModel.setUsernameText(it)
-                   },hint = stringResource(id = R.string.login_hintTR))
+                       viewModel.setEmailText(it)
+                   }, error = viewModel.emailError.value
+                   ,hint = stringResource(id = R.string.login_hintTR))
 
                 Spacer(modifier = Modifier.height(SpaceMedium))
 
@@ -101,20 +91,33 @@ fun LoginScreen(
                         viewModel.setPasswordText(it)
 
                     },
+                    error = viewModel.passwordError.value,
                     hint = stringResource(id = R.string.passwordTR ),
-                    keyboardType = KeyboardType.Password
-                    )
+                    keyboardType = KeyboardType.Password,
+                    isPasswordVisible = viewModel.showPassword.value,
+                    onPasswordToggleClick = {
+                        viewModel.setShowPassword(it)
+                    })
 
-                Spacer(modifier = Modifier.height(SpaceLarge))
+                Spacer(modifier = Modifier.height(SpaceMedium))
+
+                Button(
+                    onClick = {},
+                    modifier = Modifier.align(Alignment.CenterHorizontally)
+                ){
+                    Text(text = stringResource(id = R.string.loginTR),
+                        color = MaterialTheme.colorScheme.onPrimary)
+
+
+                }
 
 //                UnderlinedTextComponent(value = stringResource(id = R.string.forgot_passwordTR))
 //                Spacer(modifier = Modifier.height(20.dp))
-
-                ButtonComponent(
-                    value = stringResource(id = R.string.loginTR),
-                    onButtonClicked = {
-                        //call viewmodel
-                    })
+//                ButtonComponent(
+//                    value = stringResource(id = R.string.loginTR),
+//                    onButtonClicked = {
+//                        //call viewmodel
+//                    })
                 DividerTextComponent()
 //                ClickableLoginTextComponent(tryingToLogin = false, onTextSelected = {
 //                    EventifyAppRouter.navigateTo(Screen.SignUpScreen)
