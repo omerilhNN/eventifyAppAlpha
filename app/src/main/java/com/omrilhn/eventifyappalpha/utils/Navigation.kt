@@ -1,4 +1,4 @@
-package com.omrilhn.eventifyappalpha.presentation.utils
+package com.omrilhn.eventifyappalpha.utils
 
 import androidx.compose.runtime.Composable
 import androidx.navigation.compose.NavHost
@@ -12,10 +12,10 @@ fun Navigation() {
     val navController = rememberNavController()
     NavHost(navController = navController, startDestination = Screen.SplashScreen.route) {
         composable(Screen.SplashScreen.route){
-            SplashScreen(navController)
+            SplashScreen(navController = navController)
         }
         composable(Screen.LoginScreen.route){
-            LoginScreen(navController)
+            LoginScreen(navController = navController)
         }
     }
 }

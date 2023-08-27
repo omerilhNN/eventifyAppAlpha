@@ -1,7 +1,7 @@
 package com.omrilhn.eventifyappalpha.di
 
 import com.omrilhn.eventifyappalpha.network.RestApi
-import com.omrilhn.eventifyappalpha.util.Constants
+import com.omrilhn.eventifyappalpha.utils.Constants
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

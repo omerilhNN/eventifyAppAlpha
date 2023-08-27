@@ -1,4 +1,4 @@
-package com.omrilhn.eventifyappalpha.presentation.utils
+package com.omrilhn.eventifyappalpha.utils
 
 object TestTags {
 

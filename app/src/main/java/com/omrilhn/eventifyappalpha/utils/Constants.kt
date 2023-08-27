@@ -1,4 +1,4 @@
-package com.omrilhn.eventifyappalpha.util
+package com.omrilhn.eventifyappalpha.utils
 
 object Constants {
     // https://identity-eventify.azurewebsites.net/swagger/v1/swagger.json

@@ -1,4 +1,4 @@
-package com.omrilhn.eventifyappalpha.screens
+package com.omrilhn.eventifyappalpha.presentation.register
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
@@ -34,7 +34,7 @@ import com.omrilhn.eventifyappalpha.navigation.EventifyAppRouter
 import com.omrilhn.eventifyappalpha.navigation.Screen
 
 @Composable
-fun SignUpScreen(){
+fun RegisterScreen(){
     Surface(
         modifier = Modifier
             .fillMaxSize()
@@ -91,5 +91,5 @@ fun SignUpScreen(){
 @Preview
 @Composable
 fun DefaultPreviewOfSignUpScreen(){
-    SignUpScreen()
+    RegisterScreen()
 }

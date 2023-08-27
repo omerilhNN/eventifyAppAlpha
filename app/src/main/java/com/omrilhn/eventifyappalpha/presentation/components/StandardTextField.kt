@@ -27,7 +27,7 @@ import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import com.omrilhn.eventifyappalpha.R
-import com.omrilhn.eventifyappalpha.presentation.utils.TestTags
+import com.omrilhn.eventifyappalpha.utils.TestTags
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable

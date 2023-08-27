@@ -17,6 +17,7 @@ class LoginViewModel @Inject constructor(): ViewModel() {
 
     private val _passwordText = MutableStateFlow<String>("")
     val passwordText : StateFlow<String> get() = _passwordText
+    private val passwordVisibleState = mutableStateOf<>()
 
     fun setUsernameText(username:String){
         _usernameText.value = username
