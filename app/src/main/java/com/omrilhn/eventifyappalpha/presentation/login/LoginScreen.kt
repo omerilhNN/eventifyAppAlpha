@@ -43,7 +43,7 @@ fun LoginScreen(
     viewModel: LoginViewModel = hiltViewModel()
 ) {
     // **********************************************\\
-    val usernameText by viewModel.emailText.collectAsState()
+    val emailText by viewModel.emailText.collectAsState()
     val passwordText by viewModel.passwordText.collectAsState()
 
     Box(
@@ -77,7 +77,7 @@ fun LoginScreen(
                 Spacer(modifier = Modifier.height(SpaceMedium))
 
                 //Username field
-               StandardTextField(text = usernameText,
+               StandardTextField(text = emailText,
                    onValueChange = {
                        viewModel.setEmailText(it)
                    }, error = viewModel.emailError.value
@@ -107,8 +107,6 @@ fun LoginScreen(
                 ){
                     Text(text = stringResource(id = R.string.loginTR),
                         color = MaterialTheme.colorScheme.onPrimary)
-
-
                 }
 
 //                UnderlinedTextComponent(value = stringResource(id = R.string.forgot_passwordTR))
@@ -142,7 +140,7 @@ fun LoginScreen(
                 .align(Alignment.BottomCenter)
                 .clickable {
                     navController.navigate(
-                        Screen.RegisterScreen.route
+                        com.omrilhn.eventifyappalpha.utils.Screen.RegisterScreen.route
                     )
                 }
         )

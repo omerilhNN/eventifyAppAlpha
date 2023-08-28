@@ -10,7 +10,7 @@ import androidx.compose.ui.graphics.Color
 import com.omrilhn.eventifyappalpha.navigation.EventifyAppRouter
 import com.omrilhn.eventifyappalpha.navigation.Screen
 import com.omrilhn.eventifyappalpha.presentation.login.LoginScreen
-import com.omrilhn.eventifyappalpha.screens.SignUpScreen
+
 import com.omrilhn.eventifyappalpha.screens.TermsAndConditionsScreen
 import dagger.hilt.android.HiltAndroidApp
 import timber.log.Timber

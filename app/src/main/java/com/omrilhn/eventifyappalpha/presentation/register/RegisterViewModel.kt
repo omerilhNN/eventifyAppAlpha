@@ -15,7 +15,7 @@ class RegisterViewModel @Inject constructor(): ViewModel() {
     val nameText :StateFlow<String> get() = _nameText
 
     private val _surnameText = MutableStateFlow<String>("")
-    val surname :StateFlow<String> get() = _surnameText
+    val surnameText :StateFlow<String> get() = _surnameText
 
     private val _emailText = MutableStateFlow<String>("")
     val emailText :StateFlow<String> get() = _emailText
@@ -34,6 +34,12 @@ class RegisterViewModel @Inject constructor(): ViewModel() {
 
     fun setEmailText(email:String){
         _emailText.value = email
+    }
+    fun setNameText(name:String){
+        _nameText.value = name
+    }
+    fun setSurnameText(surname:String){
+        _surnameText.value = surname
     }
 
     fun setPasswordText(password : String)

@@ -2,7 +2,9 @@ package com.omrilhn.eventifyappalpha.presentation.register
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -12,18 +14,29 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.rounded.AccountBox
 import androidx.compose.material.icons.rounded.Lock
 import androidx.compose.material.icons.rounded.MailOutline
+import androidx.compose.material3.Button
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.SpanStyle
+import androidx.compose.ui.text.buildAnnotatedString
+import androidx.compose.ui.text.input.KeyboardType
+import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.navigation.NavController
 import com.omrilhn.eventifyappalpha.R
 import com.omrilhn.eventifyappalpha.components.CheckBoxComponent
 import com.omrilhn.eventifyappalpha.components.ClickableLoginTextComponent
@@ -32,43 +45,103 @@ import com.omrilhn.eventifyappalpha.components.InputTextField
 import com.omrilhn.eventifyappalpha.components.PasswordTextField
 import com.omrilhn.eventifyappalpha.navigation.EventifyAppRouter
 import com.omrilhn.eventifyappalpha.navigation.Screen
+import com.omrilhn.eventifyappalpha.presentation.components.StandardTextField
+import com.omrilhn.eventifyappalpha.presentation.theme.SpaceLarge
+import com.omrilhn.eventifyappalpha.presentation.theme.SpaceMedium
 
 @Composable
-fun RegisterScreen(){
-    Surface(
+fun RegisterScreen(
+    navController: NavController,
+    viewModel:RegisterViewModel = hiltViewModel()
+){
+    val emailText by viewModel.emailText.collectAsState()
+    val passwordText by viewModel.passwordText.collectAsState()
+    val nameText by viewModel.emailText.collectAsState()
+    val surnameText by viewModel.passwordText.collectAsState()
+
+    Box(
         modifier = Modifier
             .fillMaxSize()
-            .padding(28.dp)
-            .background(Color.White)){
-        Column(modifier = Modifier.padding(8.dp)){
-            Row(modifier = Modifier.fillMaxWidth(),horizontalArrangement = Arrangement.Center){
-                Image(painter = painterResource(id = R.drawable.stay_eventified),
-                    contentDescription ="Eventify Logo",
+            .padding(
+                start = SpaceMedium,
+                end = SpaceMedium,
+                top = SpaceLarge,
+                bottom = 50.dp
+            )
+            ){
+        Column(verticalArrangement =Arrangement.Center,
+            modifier = Modifier
+                .fillMaxSize()
+                .padding(SpaceMedium)
+                .align(Alignment.Center)) {
+            Row(modifier = Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.Center) {
+                Image(
+                    painter = painterResource(id = R.drawable.stay_eventified),
+                    contentDescription = "Eventify Logo",
                     modifier = Modifier
                         .height(150.dp)
-                        .width(150.dp))
+                        .width(150.dp)
+                )
             }
 
             Spacer(modifier = Modifier.height(20.dp))
-            Row(modifier = Modifier
-                .fillMaxWidth()
-                .padding(bottom = 20.dp)) {
-                InputTextField(labelValue = stringResource(id = R.string.first_nameTR),
-                    imageResource = Icons.Rounded.AccountBox)
+            Row(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(bottom = 20.dp)
+            ) {
+//                InputTextField(labelValue = stringResource(id = R.string.first_nameTR),
+//                    imageResource = Icons.Rounded.AccountBox)
+                StandardTextField(text = nameText,
+                    onValueChange = {
+                        viewModel.setNameText(it)
+                    },
+                    hint = stringResource(id = R.string.first_nameTR),
+                    modifier = Modifier.fillMaxWidth(0.5f))
+
                 Spacer(modifier = Modifier.width(10.dp))
-                InputTextField(labelValue = stringResource(id = R.string.last_nameTR)
-                    ,imageResource = Icons.Rounded.AccountBox)
-            }
+//                InputTextField(labelValue = stringResource(id = R.string.last_nameTR)
+//                    ,imageResource = Icons.Rounded.AccountBox)
+                StandardTextField(text = surnameText,
+                    onValueChange = {
+                        viewModel.setNameText(it)
+                    },
+                    hint = stringResource(id = R.string.last_nameTR),
+                    modifier = Modifier.fillMaxWidth())
 
-            InputTextField(labelValue = stringResource(id = R.string.emailTR)
-                ,imageResource = Icons.Rounded.MailOutline)
+            }
+//
+//            InputTextField(labelValue = stringResource(id = R.string.emailTR)
+//                ,imageResource = Icons.Rounded.MailOutline)
+            //EMAIL FIELD
+            StandardTextField(
+                text = emailText,
+                onValueChange = {
+                    viewModel.setEmailText(it)
+                },
+                error = viewModel.emailError.value,
+                hint = stringResource(id = R.string.emailTR)
+            )
+
 
             Spacer(modifier = Modifier.height(20.dp))
 
-            PasswordTextField(labelValue = stringResource(id = R.string.passwordTR)
-                ,imageResource = Icons.Rounded.Lock,modifier = Modifier
-                    .fillMaxWidth(1f)
-                    .align(Alignment.CenterHorizontally))
+//            PasswordTextField(labelValue = stringResource(id = R.string.passwordTR)
+//                ,imageResource = Icons.Rounded.Lock,modifier = Modifier
+//                    .fillMaxWidth(1f)
+//                    .align(Alignment.CenterHorizontally))
+            //PASSWORD FIELD
+            StandardTextField(text = passwordText,
+                onValueChange = {
+                    viewModel.setPasswordText(it)
+                },
+                error = viewModel.passwordError.value,
+                hint = stringResource(id = R.string.passwordTR),
+                keyboardType = KeyboardType.Password,
+                isPasswordVisible = viewModel.showPassword.value,
+                onPasswordToggleClick = {
+                    viewModel.setShowPassword(it)
+                })
 
             Spacer(modifier = Modifier.height(20.dp))
 
@@ -76,20 +149,47 @@ fun RegisterScreen(){
                 onTextSelected = {
                     EventifyAppRouter.navigateTo(Screen.TermsAndConditionsScreen)
                 })
-            Spacer(modifier = Modifier.height(40.dp))
+            Spacer(modifier = Modifier.height(25.dp))
 //            ButtonComponent(value = stringResource(R.string.registerTR)
 //                )
+            Button(
+                onClick = {},
+                modifier = Modifier.align(Alignment.CenterHorizontally)
+            ) {
+                Text(
+                    text = stringResource(id = R.string.registerTR),
+                    color = MaterialTheme.colorScheme.primary
+                )
+            }
             DividerTextComponent()
 
-            ClickableLoginTextComponent(tryingToLogin = true,onTextSelected = {
-                EventifyAppRouter.navigateTo(Screen.LoginScreen)
-            })
+            //ALREADY HAVE AN ACCOUNT
+//            ClickableLoginTextComponent(tryingToLogin = true,onTextSelected = {
+//                EventifyAppRouter.navigateTo(Screen.LoginScreen)
+//            })
+        }
+            Text(
+                text = buildAnnotatedString {
+                    append(stringResource(id = R.string.already_have_account))
+                    append(" ")
+                    val signUpText = stringResource(id = R.string.loginTR)
+                    withStyle(
+                        style = SpanStyle(
+                            color = MaterialTheme.colorScheme.primary
+                        )
+                    ) {
+                        append(signUpText)
+                    }
+                },
+                style = MaterialTheme.typography.bodySmall,
+                modifier = Modifier
+                    .align(Alignment.BottomCenter)
+                    .clickable {
+                        navController.popBackStack()
+                    }
+            )
+
         }
     }
-}
 
-@Preview
-@Composable
-fun DefaultPreviewOfSignUpScreen(){
-    RegisterScreen()
-}
+

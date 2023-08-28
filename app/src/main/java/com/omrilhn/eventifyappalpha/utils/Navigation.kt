@@ -5,6 +5,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.omrilhn.eventifyappalpha.presentation.login.LoginScreen
+import com.omrilhn.eventifyappalpha.presentation.register.RegisterScreen
 import com.omrilhn.eventifyappalpha.presentation.splash.SplashScreen
 
 @Composable
@@ -16,6 +17,9 @@ fun Navigation() {
         }
         composable(Screen.LoginScreen.route){
             LoginScreen(navController = navController)
+        }
+        composable(Screen.RegisterScreen.route){
+            RegisterScreen(navController = navController)
         }
     }
 }

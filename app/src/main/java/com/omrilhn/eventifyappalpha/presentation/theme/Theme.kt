@@ -21,7 +21,7 @@ private val DarkColorScheme = darkColorScheme(
     tertiary = AccentColor
 )
 private val DarkColorPalette = darkColorScheme(
-    primary = GreenAccent,
+    primary = AccentColor,
     background = DarkGray,
     onBackground = TextWhite,
     onPrimary = DarkGray,
