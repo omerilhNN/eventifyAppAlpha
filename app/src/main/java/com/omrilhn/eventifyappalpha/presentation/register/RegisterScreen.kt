@@ -21,6 +21,7 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
@@ -43,6 +44,7 @@ import com.omrilhn.eventifyappalpha.components.ClickableLoginTextComponent
 import com.omrilhn.eventifyappalpha.components.DividerTextComponent
 import com.omrilhn.eventifyappalpha.components.InputTextField
 import com.omrilhn.eventifyappalpha.components.PasswordTextField
+import com.omrilhn.eventifyappalpha.model.UserInfo
 import com.omrilhn.eventifyappalpha.navigation.EventifyAppRouter
 import com.omrilhn.eventifyappalpha.navigation.Screen
 import com.omrilhn.eventifyappalpha.presentation.components.StandardTextField
@@ -56,8 +58,8 @@ fun RegisterScreen(
 ){
     val emailText by viewModel.emailText.collectAsState()
     val passwordText by viewModel.passwordText.collectAsState()
-    val nameText by viewModel.emailText.collectAsState()
-    val surnameText by viewModel.passwordText.collectAsState()
+    val nameText by viewModel.nameText.collectAsState()
+    val surnameText by viewModel.surnameText.collectAsState()
 
     Box(
         modifier = Modifier
@@ -90,8 +92,6 @@ fun RegisterScreen(
                     .fillMaxWidth()
                     .padding(bottom = 20.dp)
             ) {
-//                InputTextField(labelValue = stringResource(id = R.string.first_nameTR),
-//                    imageResource = Icons.Rounded.AccountBox)
                 StandardTextField(text = nameText,
                     onValueChange = {
                         viewModel.setNameText(it)
@@ -100,19 +100,16 @@ fun RegisterScreen(
                     modifier = Modifier.fillMaxWidth(0.5f))
 
                 Spacer(modifier = Modifier.width(10.dp))
-//                InputTextField(labelValue = stringResource(id = R.string.last_nameTR)
-//                    ,imageResource = Icons.Rounded.AccountBox)
+
                 StandardTextField(text = surnameText,
                     onValueChange = {
-                        viewModel.setNameText(it)
+                        viewModel.setSurnameText(it)
                     },
+                    error = viewModel.emailError.value,
                     hint = stringResource(id = R.string.last_nameTR),
                     modifier = Modifier.fillMaxWidth())
 
             }
-//
-//            InputTextField(labelValue = stringResource(id = R.string.emailTR)
-//                ,imageResource = Icons.Rounded.MailOutline)
             //EMAIL FIELD
             StandardTextField(
                 text = emailText,
@@ -125,11 +122,6 @@ fun RegisterScreen(
 
 
             Spacer(modifier = Modifier.height(20.dp))
-
-//            PasswordTextField(labelValue = stringResource(id = R.string.passwordTR)
-//                ,imageResource = Icons.Rounded.Lock,modifier = Modifier
-//                    .fillMaxWidth(1f)
-//                    .align(Alignment.CenterHorizontally))
             //PASSWORD FIELD
             StandardTextField(text = passwordText,
                 onValueChange = {
@@ -150,23 +142,20 @@ fun RegisterScreen(
                     EventifyAppRouter.navigateTo(Screen.TermsAndConditionsScreen)
                 })
             Spacer(modifier = Modifier.height(25.dp))
-//            ButtonComponent(value = stringResource(R.string.registerTR)
-//                )
+            val userInfo = UserInfo(emailText,passwordText,true,"")
             Button(
-                onClick = {},
+                onClick = {
+                    ){}
+                          viewModel.addUser(userInfo)
+                },
                 modifier = Modifier.align(Alignment.CenterHorizontally)
             ) {
                 Text(
                     text = stringResource(id = R.string.registerTR),
-                    color = MaterialTheme.colorScheme.primary
+                    color = MaterialTheme.colorScheme.onBackground
                 )
             }
-            DividerTextComponent()
 
-            //ALREADY HAVE AN ACCOUNT
-//            ClickableLoginTextComponent(tryingToLogin = true,onTextSelected = {
-//                EventifyAppRouter.navigateTo(Screen.LoginScreen)
-//            })
         }
             Text(
                 text = buildAnnotatedString {

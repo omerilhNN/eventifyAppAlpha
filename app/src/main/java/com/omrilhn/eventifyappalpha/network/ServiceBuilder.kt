@@ -16,8 +16,8 @@ object ServiceBuilder {
             .build()
     }
 
-    val restApiService : RestApi by lazy{
-        retrofit.create(RestApi::class.java)
+    val userApiService : UserApi by lazy{
+        retrofit.create(UserApi::class.java)
     }
 
 }

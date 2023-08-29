@@ -1,6 +1,6 @@
 package com.omrilhn.eventifyappalpha.di
 
-import com.omrilhn.eventifyappalpha.network.RestApi
+import com.omrilhn.eventifyappalpha.network.UserApi
 import com.omrilhn.eventifyappalpha.utils.Constants
 import dagger.Module
 import dagger.Provides
@@ -15,9 +15,9 @@ import javax.inject.Singleton
 object AppModule {
     @Singleton
     @Provides
-    fun provideUserApi(): RestApi {
+    fun provideUserApi(): UserApi {
         return Retrofit.Builder().baseUrl(Constants.BASE_URL)
             .addConverterFactory(GsonConverterFactory.create())
-            .build().create(RestApi::class.java)
+            .build().create(UserApi::class.java)
     }
 }

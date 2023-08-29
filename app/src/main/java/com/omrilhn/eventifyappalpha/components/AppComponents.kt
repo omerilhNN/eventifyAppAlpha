@@ -333,7 +333,7 @@ fun DividerTextComponent(){
         Text(
             modifier = Modifier.padding(8.dp),
             text = stringResource(R.string.other_loginOptionsTR),
-            fontSize = 18.sp,
+            fontSize = 12.sp,
             color = Color.White
         )
         Divider(

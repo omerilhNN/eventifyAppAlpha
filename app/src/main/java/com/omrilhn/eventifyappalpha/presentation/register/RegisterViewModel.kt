@@ -3,13 +3,17 @@ package com.omrilhn.eventifyappalpha.presentation.register
 import androidx.compose.runtime.State
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
+import com.omrilhn.eventifyappalpha.data.UserRepository
+import com.omrilhn.eventifyappalpha.model.UserInfo
+import com.omrilhn.eventifyappalpha.responses.UserInfoResponse
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import javax.inject.Inject
 
 @HiltViewModel
-class RegisterViewModel @Inject constructor(): ViewModel() {
+class RegisterViewModel @Inject constructor(private val repository: UserRepository )
+    : ViewModel() {
 
     private val _nameText = MutableStateFlow<String>("")
     val nameText :StateFlow<String> get() = _nameText
@@ -54,5 +58,12 @@ class RegisterViewModel @Inject constructor(): ViewModel() {
     }
     fun setIsEmailError(error:String){
         _emailError.value = error
+    }
+
+    suspend fun addUser(userInfo:UserInfo){
+        return repository.addUser(userInfo)
+    }
+    suspend fun getUser(userInfoResponse:UserInfoResponse){
+        return repository.getUser(userInfoResponse)
     }
 }

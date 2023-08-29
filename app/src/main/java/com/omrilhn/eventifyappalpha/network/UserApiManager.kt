@@ -5,9 +5,9 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class RestApiManager {
+class UserApiManager {
     suspend fun addUser(userData: UserInfo, onResult: (UserInfo?) -> Unit){
-        val retrofit = ServiceBuilder.restApiService
+        val retrofit = ServiceBuilder.userApiService
         retrofit.addUser(userData).enqueue(
             object : Callback<UserInfo> {
                 override fun onFailure(call: Call<UserInfo>, t: Throwable) {

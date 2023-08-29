@@ -11,7 +11,7 @@ import retrofit2.http.POST
 import javax.inject.Singleton
 
 @Singleton
-interface RestApi {
+interface UserApi {
     @Headers("Content-Type: application/json")
     @POST("account/login")
     suspend fun addUser(@Body userData: UserInfo): Call<UserInfo>
