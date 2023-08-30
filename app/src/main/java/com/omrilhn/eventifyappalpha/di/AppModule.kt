@@ -1,5 +1,6 @@
 package com.omrilhn.eventifyappalpha.di
 
+import com.omrilhn.eventifyappalpha.data.UserRepository
 import com.omrilhn.eventifyappalpha.network.UserApi
 import com.omrilhn.eventifyappalpha.utils.Constants
 import dagger.Module
@@ -13,6 +14,12 @@ import javax.inject.Singleton
 @Module
 @InstallIn(SingletonComponent::class)
 object AppModule {
+
+    @Singleton
+    @Provides
+    fun provideUserRepository(
+        api:UserApi
+    ) = UserRepository(api)
     @Singleton
     @Provides
     fun provideUserApi(): UserApi {

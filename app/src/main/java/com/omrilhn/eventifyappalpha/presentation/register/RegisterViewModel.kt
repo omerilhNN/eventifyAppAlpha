@@ -3,12 +3,15 @@ package com.omrilhn.eventifyappalpha.presentation.register
 import androidx.compose.runtime.State
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import com.omrilhn.eventifyappalpha.data.UserRepository
 import com.omrilhn.eventifyappalpha.model.UserInfo
 import com.omrilhn.eventifyappalpha.responses.UserInfoResponse
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
@@ -16,16 +19,16 @@ class RegisterViewModel @Inject constructor(private val repository: UserReposito
     : ViewModel() {
 
     private val _nameText = MutableStateFlow<String>("")
-    val nameText :StateFlow<String> get() = _nameText
+    val nameText :StateFlow<String> get() = _nameText.asStateFlow()
 
     private val _surnameText = MutableStateFlow<String>("")
-    val surnameText :StateFlow<String> get() = _surnameText
+    val surnameText :StateFlow<String> get() = _surnameText.asStateFlow()
 
     private val _emailText = MutableStateFlow<String>("")
-    val emailText :StateFlow<String> get() = _emailText
+    val emailText :StateFlow<String> get() = _emailText.asStateFlow()
 
     private val _passwordText = MutableStateFlow<String>("")
-    val passwordText : StateFlow<String> get() = _passwordText
+    val passwordText : StateFlow<String> get() = _passwordText.asStateFlow()
 
     private val _showPassword = mutableStateOf(false)
     val showPassword: State<Boolean> = _showPassword
@@ -61,9 +64,9 @@ class RegisterViewModel @Inject constructor(private val repository: UserReposito
     }
 
     suspend fun addUser(userInfo:UserInfo){
-        return repository.addUser(userInfo)
+        repository.addUser(userInfo)
     }
     suspend fun getUser(userInfoResponse:UserInfoResponse){
-        return repository.getUser(userInfoResponse)
+         repository.getUser(userInfoResponse)
     }
 }

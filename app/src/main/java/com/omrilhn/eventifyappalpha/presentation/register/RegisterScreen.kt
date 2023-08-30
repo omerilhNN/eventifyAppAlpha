@@ -1,5 +1,6 @@
 package com.omrilhn.eventifyappalpha.presentation.register
 
+import android.util.Log
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -24,6 +25,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -50,6 +52,7 @@ import com.omrilhn.eventifyappalpha.navigation.Screen
 import com.omrilhn.eventifyappalpha.presentation.components.StandardTextField
 import com.omrilhn.eventifyappalpha.presentation.theme.SpaceLarge
 import com.omrilhn.eventifyappalpha.presentation.theme.SpaceMedium
+import kotlinx.coroutines.launch
 
 @Composable
 fun RegisterScreen(
@@ -60,7 +63,10 @@ fun RegisterScreen(
     val passwordText by viewModel.passwordText.collectAsState()
     val nameText by viewModel.nameText.collectAsState()
     val surnameText by viewModel.surnameText.collectAsState()
+    val userInfo = UserInfo(emailText,passwordText,true,"")
 
+
+    val scope = rememberCoroutineScope()
     Box(
         modifier = Modifier
             .fillMaxSize()
@@ -142,11 +148,11 @@ fun RegisterScreen(
                     EventifyAppRouter.navigateTo(Screen.TermsAndConditionsScreen)
                 })
             Spacer(modifier = Modifier.height(25.dp))
-            val userInfo = UserInfo(emailText,passwordText,true,"")
             Button(
                 onClick = {
-                    ){}
-                          viewModel.addUser(userInfo)
+                    scope.launch {
+                        viewModel.addUser(userInfo)
+                    }
                 },
                 modifier = Modifier.align(Alignment.CenterHorizontally)
             ) {
