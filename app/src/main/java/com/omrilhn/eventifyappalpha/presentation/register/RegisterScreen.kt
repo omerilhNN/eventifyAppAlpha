@@ -39,6 +39,7 @@ import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.lifecycle.viewModelScope
 import androidx.navigation.NavController
 import com.omrilhn.eventifyappalpha.R
 import com.omrilhn.eventifyappalpha.components.CheckBoxComponent
@@ -52,6 +53,8 @@ import com.omrilhn.eventifyappalpha.navigation.Screen
 import com.omrilhn.eventifyappalpha.presentation.components.StandardTextField
 import com.omrilhn.eventifyappalpha.presentation.theme.SpaceLarge
 import com.omrilhn.eventifyappalpha.presentation.theme.SpaceMedium
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.async
 import kotlinx.coroutines.launch
 
 @Composable
@@ -150,7 +153,7 @@ fun RegisterScreen(
             Spacer(modifier = Modifier.height(25.dp))
             Button(
                 onClick = {
-                    scope.launch {
+                    scope.launch(Dispatchers.IO) {
                         viewModel.addUser(userInfo)
                     }
                 },

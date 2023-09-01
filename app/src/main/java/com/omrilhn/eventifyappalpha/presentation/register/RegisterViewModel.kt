@@ -8,10 +8,13 @@ import com.omrilhn.eventifyappalpha.data.UserRepository
 import com.omrilhn.eventifyappalpha.model.UserInfo
 import com.omrilhn.eventifyappalpha.responses.UserInfoResponse
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
+import retrofit2.Response
 import javax.inject.Inject
 
 @HiltViewModel
@@ -64,9 +67,15 @@ class RegisterViewModel @Inject constructor(private val repository: UserReposito
     }
 
     suspend fun addUser(userInfo:UserInfo){
-        repository.addUser(userInfo)
+        viewModelScope.launch(Dispatchers.IO) {
+            repository.addUser(userInfo)
+        }
     }
-    suspend fun getUser(userInfoResponse:UserInfoResponse){
-         repository.getUser(userInfoResponse)
+    suspend fun getUser(userInfoResponse:UserInfoResponse) {
+         viewModelScope.launch {
+             withContext(Dispatchers.IO){
+                 repository.getUser(userInfoResponse)
+             }
+         }
     }
 }
