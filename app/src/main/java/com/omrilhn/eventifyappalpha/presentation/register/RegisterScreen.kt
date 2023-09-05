@@ -22,6 +22,7 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.DisposableEffect
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
@@ -53,10 +54,13 @@ import com.omrilhn.eventifyappalpha.navigation.Screen
 import com.omrilhn.eventifyappalpha.presentation.components.StandardTextField
 import com.omrilhn.eventifyappalpha.presentation.theme.SpaceLarge
 import com.omrilhn.eventifyappalpha.presentation.theme.SpaceMedium
+import kotlinx.coroutines.DelicateCoroutinesApi
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.async
 import kotlinx.coroutines.launch
 
+@OptIn(DelicateCoroutinesApi::class)
 @Composable
 fun RegisterScreen(
     navController: NavController,
@@ -69,7 +73,7 @@ fun RegisterScreen(
     val userInfo = UserInfo(emailText,passwordText,true,"")
 
 
-    val scope = rememberCoroutineScope()
+
     Box(
         modifier = Modifier
             .fillMaxSize()
@@ -153,9 +157,9 @@ fun RegisterScreen(
             Spacer(modifier = Modifier.height(25.dp))
             Button(
                 onClick = {
-                    scope.launch(Dispatchers.IO) {
-                        viewModel.addUser(userInfo)
-                    }
+                   LaunchedEffect(Unit){
+                       viewModel.addUser(userInfo)
+                   }
                 },
                 modifier = Modifier.align(Alignment.CenterHorizontally)
             ) {

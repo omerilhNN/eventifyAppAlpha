@@ -14,9 +14,9 @@ import javax.inject.Singleton
 interface UserApi {
     @Headers("Content-Type: application/json")
     @POST("account/login")
-    fun addUser(@Body userData: UserInfo): Call<UserInfo>
+    suspend fun addUser(@Body userData: UserInfo): Call<UserInfo>
 
     @Headers("Content-Type: application/json")
     @GET("account/login")
-     fun getUser(@Body userData: UserInfoResponse) : Response<UserInfoResponse>
+     suspend fun getUser(@Body userData: UserInfoResponse) : Response<UserInfoResponse>
 }

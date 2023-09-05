@@ -67,15 +67,9 @@ class RegisterViewModel @Inject constructor(private val repository: UserReposito
     }
 
     suspend fun addUser(userInfo:UserInfo){
-        viewModelScope.launch(Dispatchers.IO) {
             repository.addUser(userInfo)
-        }
     }
     suspend fun getUser(userInfoResponse:UserInfoResponse) {
-         viewModelScope.launch {
-             withContext(Dispatchers.IO){
                  repository.getUser(userInfoResponse)
-             }
          }
     }
-}

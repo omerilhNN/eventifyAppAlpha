@@ -83,6 +83,11 @@ dependencies {
     implementation ("com.google.accompanist:accompanist-flowlayout:0.17.0")
     implementation ("androidx.compose.material:material-icons-extended:1.5.0")
 
+    implementation("androidx.lifecycle:lifecycle-runtime-compose:2.6.1")
+    // ViewModel
+    implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.6.1")
+    // ViewModel utilities for Compose
+    implementation("androidx.lifecycle:lifecycle-viewmodel-compose:2.6.1")
 
 
     implementation("androidx.core:core-ktx:1.10.1")
