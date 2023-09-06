@@ -157,7 +157,7 @@ fun RegisterScreen(
             Spacer(modifier = Modifier.height(25.dp))
             Button(
                 onClick = {
-                   LaunchedEffect(Unit){
+                   LaunchedEffect(){
                        viewModel.addUser(userInfo)
                    }
                 },

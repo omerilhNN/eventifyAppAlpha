@@ -1,8 +1,10 @@
 plugins {
-    id("com.android.application")
     id("org.jetbrains.kotlin.android")
     id("kotlin-kapt")
     id("dagger.hilt.android.plugin")
+
+    id("com.android.application")
+    id ("com.google.gms.google-services")
 }
 
 android {
@@ -88,6 +90,12 @@ dependencies {
     implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.6.1")
     // ViewModel utilities for Compose
     implementation("androidx.lifecycle:lifecycle-viewmodel-compose:2.6.1")
+
+    //Firebase
+    implementation ("com.google.firebase:firebase-auth-ktx:22.1.1")
+    implementation ("com.google.android.gms:play-services-auth:20.7.0")
+
+    implementation ("io.coil-kt:coil-compose:2.4.0")
 
 
     implementation("androidx.core:core-ktx:1.10.1")

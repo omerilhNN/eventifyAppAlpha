@@ -24,4 +24,6 @@
     <string name ="forgot_passwordTR">Şifrenizi mi unuttunuz?</string>
     <string name ="other_loginOptionsTR">Diğer giriş seçenekleri</string>
     <string name ="already_have_account">Zaten hesabınız var mı? </string>
+
+    <string name ="web_client_id">679990019870-hiqlmqh0o7879moqocefru5na38iqg3f.apps.googleusercontent.com</string>
 </resources>

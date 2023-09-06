@@ -6,10 +6,14 @@ import androidx.lifecycle.ViewModel
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.update
 import javax.inject.Inject
 
 @HiltViewModel
 class LoginViewModel @Inject constructor(): ViewModel() {
+    private val _state = MutableStateFlow(LoginState())
+    val state = _state.asStateFlow()
 
     private val _emailText = MutableStateFlow<String>("")
     val emailText :StateFlow<String> get() = _emailText
@@ -44,7 +48,15 @@ class LoginViewModel @Inject constructor(): ViewModel() {
         _emailError.value = error
     }
 
-
+    fun onSignInResult(result :LoginResult){
+        _state.update { it.copy(
+            isLoginSuccesful = result.data !=null,
+            loginError = result.errorMessage
+        ) }
+    }
+    fun resetState(){
+        _state.update { LoginState() }
+    }
     
 
 }

@@ -1,5 +1,6 @@
 package com.omrilhn.eventifyappalpha.presentation.login
 
+import android.widget.Toast
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
@@ -16,10 +17,12 @@ import androidx.compose.material3.Button
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.SpanStyle
@@ -40,11 +43,24 @@ import com.omrilhn.eventifyappalpha.presentation.theme.SpaceMedium
 @Composable
 fun LoginScreen(
     navController: NavController,
-    viewModel: LoginViewModel = hiltViewModel()
+    viewModel: LoginViewModel = hiltViewModel(),
+    state:LoginState,
+    onLoginClick: () -> Unit
 ) {
     // **********************************************\\
     val emailText by viewModel.emailText.collectAsState()
     val passwordText by viewModel.passwordText.collectAsState()
+
+    val context = LocalContext.current
+    LaunchedEffect(key1 = state.loginError){//If sign in error value changes -> exec. coroutineScope
+        state.loginError?.let {error-> //if loginError is not null then do these
+            Toast.makeText(
+                context,
+                error,
+                Toast.LENGTH_LONG
+            ).show()
+        }
+    }
 
     Box(
         modifier = Modifier
@@ -76,7 +92,7 @@ fun LoginScreen(
 
                 Spacer(modifier = Modifier.height(SpaceMedium))
 
-                //Username field
+                //Email field
                StandardTextField(text = emailText,
                    onValueChange = {
                        viewModel.setEmailText(it)
@@ -101,26 +117,17 @@ fun LoginScreen(
 
                 Spacer(modifier = Modifier.height(SpaceMedium))
 
+
+                //Also manage Google sign in with onLoginClick parameter when you call this LoginScreen composable fun
                 Button(
-                    onClick = {},
+                    onClick = onLoginClick,
                     modifier = Modifier.align(Alignment.CenterHorizontally)
                 ){
                     Text(text = stringResource(id = R.string.loginTR),
                         color = MaterialTheme.colorScheme.onPrimary)
                 }
-
-//                UnderlinedTextComponent(value = stringResource(id = R.string.forgot_passwordTR))
-//                Spacer(modifier = Modifier.height(20.dp))
-//                ButtonComponent(
-//                    value = stringResource(id = R.string.loginTR),
-//                    onButtonClicked = {
-//                        //call viewmodel
-//                    })
                 DividerTextComponent()
-//                ClickableLoginTextComponent(tryingToLogin = false, onTextSelected = {
-//                    EventifyAppRouter.navigateTo(Screen.SignUpScreen)
-//
-//                })
+
                 }
         Text(
             text = buildAnnotatedString {
@@ -145,8 +152,5 @@ fun LoginScreen(
                 }
         )
             }
-
         }
-//    BackButtonHandler {
-//        EventifyAppRouter.navigateTo(Screen.SignUpScreen)
-//    }
+
