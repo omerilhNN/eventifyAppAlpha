@@ -29,8 +29,10 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
+import androidx.navigation.compose.rememberNavController
 import com.omrilhn.eventifyappalpha.R
 import com.omrilhn.eventifyappalpha.presentation.components.BottomNavItem
 import com.omrilhn.eventifyappalpha.presentation.components.StandardBottomNavItem
@@ -42,6 +44,7 @@ fun StandardScaffold(
     navController: NavController,
     modifier: Modifier = Modifier,
     showBottomBar: Boolean = true,
+    state: SnackbarHostState,
     bottomNavItems: List<BottomNavItem> = listOf(
         BottomNavItem(
             route = Screen.NotificationsScreen.route,
@@ -71,7 +74,7 @@ fun StandardScaffold(
     onFabClick: () -> Unit = {},
     content: @Composable () -> Unit
 ) {
-    val state = remember{SnackbarHostState()}
+//    val state = remember{SnackbarHostState()}
     Scaffold(
         bottomBar = {
             if (showBottomBar) {
@@ -115,9 +118,9 @@ fun StandardScaffold(
         },
         floatingActionButtonPosition = FabPosition.Center,
         modifier = modifier
-    ) {padding->
-        Box(modifier = Modifier.padding(padding)){
-            content()
-        }
-    }
+        , content = { padding->
+                Box(modifier = Modifier.padding(padding)){
+                    content()
+                }
+        })
 }
