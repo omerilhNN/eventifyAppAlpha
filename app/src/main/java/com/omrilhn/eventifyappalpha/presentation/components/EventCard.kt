@@ -29,19 +29,19 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.compose.rememberNavController
 import com.omrilhn.eventifyappalpha.R
+import com.omrilhn.eventifyappalpha.model.EventCardData
 
 @Composable
 fun EventCard(
-    eventName:String,
-    ticketPrice:String,
-    date:String,
-    place:String
+        data: EventCardData,
+        onClicked: () -> Unit
     ) {
     Card(modifier = Modifier
         .fillMaxWidth(0.8f)
         .padding(5.dp)
-        .clickable { },
+        .clickable { onClicked() },
         elevation = CardDefaults.cardElevation(defaultElevation=5.dp),
         shape = RoundedCornerShape(corner = CornerSize(10.dp)),
         colors = CardDefaults.cardColors(containerColor =MaterialTheme.colorScheme.surface)
@@ -59,7 +59,7 @@ fun EventCard(
                         .fillMaxWidth()
                         .clip(RoundedCornerShape(5.dp))
                 )
-                Text(text = eventName,modifier = Modifier
+                Text(text = data.eventName,modifier = Modifier
                     .padding(5.dp)
                     .clip(RoundedCornerShape(6.dp))
                     .align(Alignment.TopStart)
@@ -69,21 +69,18 @@ fun EventCard(
                     fontWeight = FontWeight.Light,
                 )
             }
-            Row(modifier = Modifier.padding(4.dp),
-                horizontalArrangement = Arrangement.Start){
+            Text(text = data.eventName,modifier = Modifier.fillMaxWidth(),
+                fontWeight = FontWeight.Bold,
+                fontSize = 16.sp)
+            Row(modifier = Modifier
+                .padding(4.dp)
+                .fillMaxWidth(),
+               ){
                 Image(imageVector = Icons.Default.DateRange,contentDescription = null,
                     modifier = Modifier.size(12.dp))
-                Text(text = ticketPrice, fontSize = 12.sp,
+                Text(text = data.ticketPrice, fontSize = 12.sp,
                     textAlign= TextAlign.Start)
-
-
             }
         }
     }
-}
-
-@Preview(showBackground = true)
-@Composable
-fun EventCardPreview(){
-    EventCard("Halloween","200₺","31/12/2024","Central")
 }

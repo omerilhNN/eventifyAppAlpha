@@ -1,4 +1,4 @@
-package com.omrilhn.eventifyappalpha.repository
+package com.omrilhn.eventifyappalpha.data.repository
 
 import com.omrilhn.eventifyappalpha.network.ServiceBuilder
 

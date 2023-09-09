@@ -84,6 +84,9 @@ dependencies {
     implementation ("androidx.navigation:navigation-compose:2.7.1")
     implementation ("com.google.accompanist:accompanist-flowlayout:0.17.0")
     implementation ("androidx.compose.material:material-icons-extended:1.5.0")
+    implementation ("androidx.compose.material:material:1.5.0")
+    implementation ("androidx.paging:paging-compose:3.2.1")
+
 
     implementation("androidx.lifecycle:lifecycle-runtime-compose:2.6.1")
     // ViewModel
@@ -96,6 +99,7 @@ dependencies {
     implementation ("com.google.android.gms:play-services-auth:20.7.0")
 
     implementation ("io.coil-kt:coil-compose:2.4.0")
+    implementation ("io.coil-kt:coil-svg:1.3.2")
 
 
     implementation("androidx.core:core-ktx:1.10.1")
