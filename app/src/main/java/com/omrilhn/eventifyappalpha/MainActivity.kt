@@ -16,14 +16,19 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.NavBackStackEntry
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
+import coil.ImageLoader
 import coil.imageLoader
 import com.omrilhn.eventifyappalpha.presentation.theme.EventifyAppAlphaTheme
 import com.omrilhn.eventifyappalpha.utils.Navigation
 import com.omrilhn.eventifyappalpha.utils.Screen
 import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
 
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
+    @Inject
+    lateinit var imageLoader :ImageLoader
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
@@ -38,22 +43,22 @@ class MainActivity : ComponentActivity() {
 
                     StandardScaffold(
                         navController = navController,
-                        showBottomBar = shouldShow  BottomBar(navBackStackEntry),
+                        showBottomBar = shouldShowBottomBar(navBackStackEntry),
                         modifier = Modifier.fillMaxSize(),
-                        onFabClick = {
-                            navController.navigate()
+                        onFabClick = { //FloatingActionButton clicked
+                            navController.navigate(Screen.MainFeedScreen.route)
                         },
                         state = snackbarHostState
 
                     ) {
-                        Navigation(navController, scaffoldState, imageLoader)
+                        Navigation(navController, snackbarHostState, imageLoader)
                     }
                 }
             }
     }
 }
     private fun shouldShowBottomBar(backStackEntry: NavBackStackEntry?): Boolean {
-        val doesRouteMatch = backStackEntry?.destination?.route in listOf(
+        val doesRouteMatch = backStackEntry?.destination?.route in listOf(//If current destination is in that list then should show bottom bar  
             Screen.MainFeedScreen.route,
             Screen.CampaignScreen.route,
             Screen.MyActivitiesScreen.route,
