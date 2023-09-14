@@ -34,7 +34,6 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import com.omrilhn.eventifyappalpha.R
 import com.omrilhn.eventifyappalpha.components.DividerTextComponent
-import com.omrilhn.eventifyappalpha.navigation.Screen
 import com.omrilhn.eventifyappalpha.presentation.components.StandardTextField
 import com.omrilhn.eventifyappalpha.presentation.theme.SpaceLarge
 import com.omrilhn.eventifyappalpha.presentation.theme.SpaceMedium
@@ -44,7 +43,8 @@ import com.omrilhn.eventifyappalpha.presentation.theme.SpaceMedium
 fun LoginScreen(
     navController: NavController,
     viewModel: LoginViewModel = hiltViewModel(),
-    state:LoginState,
+    onNavigate: (String) -> Unit = {},
+    loginState:LoginState,
     onLoginClick: () -> Unit
 ) {
     // **********************************************\\
@@ -52,8 +52,8 @@ fun LoginScreen(
     val passwordText by viewModel.passwordText.collectAsState()
 
     val context = LocalContext.current
-    LaunchedEffect(key1 = state.loginError){//If sign in error value changes -> exec. coroutineScope
-        state.loginError?.let {error-> //if loginError is not null then do these
+    LaunchedEffect(key1 = loginState.loginError){//If sign in error value changes -> exec. coroutineScope
+        loginState.loginError?.let { error-> //if loginError is not null then do these
             Toast.makeText(
                 context,
                 error,
@@ -96,7 +96,8 @@ fun LoginScreen(
                StandardTextField(text = emailText,
                    onValueChange = {
                        viewModel.setEmailText(it)
-                   }, error = viewModel.emailError.value
+                   }, keyboardType = KeyboardType.Email
+                   ,error = viewModel.emailError.value
                    ,hint = stringResource(id = R.string.login_hintTR))
 
                 Spacer(modifier = Modifier.height(SpaceMedium))

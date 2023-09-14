@@ -33,7 +33,7 @@ import com.omrilhn.eventifyappalpha.presentation.theme.SpaceSmall
 
 @Composable
 @Throws(IllegalArgumentException::class)
-fun RowScope.StandardBottomNavItem(
+fun RowScope.StandardBottomNavItem( //Declare it into RowScope in order to reach BottomNavigationItem
     modifier: Modifier = Modifier,
     icon: ImageVector? = null,
     contentDescription: String? = null,

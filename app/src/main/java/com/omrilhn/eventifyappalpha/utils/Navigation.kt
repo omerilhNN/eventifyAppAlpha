@@ -40,7 +40,7 @@ fun Navigation(
     composable(Screen.LoginScreen.route){
         LoginScreen(navController = navController, onLoginClick = {
             navController.navigate(Screen.MainFeedScreen.route)},
-            state = LoginState(false)
+            loginState = LoginState(false)
         )
     }
     composable(Screen.RegisterScreen.route){
