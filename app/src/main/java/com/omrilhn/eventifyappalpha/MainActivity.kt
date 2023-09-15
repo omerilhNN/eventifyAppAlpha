@@ -8,18 +8,15 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.SnackbarHostState
 import androidx.compose.material3.Surface
-import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.NavBackStackEntry
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import coil.ImageLoader
-import coil.imageLoader
 import com.omrilhn.eventifyappalpha.presentation.theme.EventifyAppAlphaTheme
-import com.omrilhn.eventifyappalpha.utils.Navigation
+import com.omrilhn.eventifyappalpha.presentation.components.Navigation
 import com.omrilhn.eventifyappalpha.utils.Screen
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
@@ -58,7 +55,7 @@ class MainActivity : ComponentActivity() {
     }
 }
     private fun shouldShowBottomBar(backStackEntry: NavBackStackEntry?): Boolean {
-        val doesRouteMatch = backStackEntry?.destination?.route in listOf(//If current destination is in that list then should show bottom bar  
+        val doesRouteMatch = backStackEntry?.destination?.route in listOf(//If current destination is in that list then should show bottom bar
             Screen.MainFeedScreen.route,
             Screen.CampaignScreen.route,
             Screen.MyActivitiesScreen.route,

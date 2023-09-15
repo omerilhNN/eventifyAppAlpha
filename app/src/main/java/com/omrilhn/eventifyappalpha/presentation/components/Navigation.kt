@@ -1,4 +1,4 @@
-package com.omrilhn.eventifyappalpha.utils
+package com.omrilhn.eventifyappalpha.presentation.components
 
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.SnackbarHostState
@@ -17,6 +17,7 @@ import com.omrilhn.eventifyappalpha.presentation.notifications.NotificationsScre
 import com.omrilhn.eventifyappalpha.presentation.profile.ProfileScreen
 import com.omrilhn.eventifyappalpha.presentation.register.RegisterScreen
 import com.omrilhn.eventifyappalpha.presentation.splash.SplashScreen
+import com.omrilhn.eventifyappalpha.utils.Screen
 
 @Composable
 fun Navigation(
