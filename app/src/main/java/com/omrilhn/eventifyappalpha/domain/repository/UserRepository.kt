@@ -1,4 +1,4 @@
-package com.omrilhn.eventifyappalpha.data
+package com.omrilhn.eventifyappalpha.domain.repository
 
 import com.omrilhn.eventifyappalpha.model.UserInfo
 import com.omrilhn.eventifyappalpha.network.UserApi

@@ -5,11 +5,15 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.omrilhn.eventifyappalpha.domain.use_cases.EventCardUseCases
+import com.omrilhn.eventifyappalpha.model.EventCardData
 import com.omrilhn.eventifyappalpha.presentation.components.EventList
 import com.omrilhn.eventifyappalpha.presentation.components.PagingState
+import com.omrilhn.eventifyappalpha.utils.DefaultPaginator
+import com.omrilhn.eventifyappalpha.utils.Event
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.asSharedFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.launch
@@ -37,8 +41,8 @@ class MainFeedViewModel @Inject constructor(
     private val _eventFlow = MutableSharedFlow<Event>()
     val eventFlow = _eventFlow.asSharedFlow()
 
-    private val _pagingState = mutableStateOf<PagingState<Post>>(PagingState())
-    val pagingState: State<PagingState<Post>> = _pagingState
+    private val _pagingState = mutableStateOf<PagingState<EventCardData>>(PagingState())
+    val pagingState: State<PagingState<EventCardData>> = _pagingState
 
     private val paginator = DefaultPaginator(
         onLoadUpdated = { isLoading ->
@@ -49,10 +53,10 @@ class MainFeedViewModel @Inject constructor(
         onRequest = { page ->
             eventCardUseCases.getPostsForFollows(page = page)
         },
-        onSuccess = { posts ->
+        onSuccess = { events ->
             _pagingState.value = pagingState.value.copy(
-                items = pagingState.value.items + posts,
-                endReached = posts.isEmpty(),
+                items = pagingState.value.items + events,
+                endReached = events.isEmpty(),
                 isLoading = false
             )
         },
@@ -70,7 +74,7 @@ class MainFeedViewModel @Inject constructor(
         }
     }
     //SearchBar function
-    fun onSearchTextChange(searchText:String){
+    fun setSearchText(searchText:String){
         _searchText.value = searchText
     }
 }

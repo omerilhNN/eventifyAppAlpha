@@ -33,8 +33,7 @@ import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import com.omrilhn.eventifyappalpha.R
-import com.omrilhn.eventifyappalpha.components.DividerTextComponent
-import com.omrilhn.eventifyappalpha.presentation.components.StandardTextField
+import com.omrilhn.eventifyappalpha.core.presentation.components.StandardTextField
 import com.omrilhn.eventifyappalpha.presentation.theme.SpaceLarge
 import com.omrilhn.eventifyappalpha.presentation.theme.SpaceMedium
 
@@ -127,8 +126,6 @@ fun LoginScreen(
                     Text(text = stringResource(id = R.string.loginTR),
                         color = MaterialTheme.colorScheme.onPrimary)
                 }
-                DividerTextComponent()
-
                 }
         Text(
             text = buildAnnotatedString {

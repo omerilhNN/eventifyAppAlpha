@@ -1,4 +1,4 @@
-package com.omrilhn.eventifyappalpha.presentation.components
+package com.omrilhn.eventifyappalpha.core.presentation.components
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth

@@ -1,6 +1,6 @@
 package com.omrilhn.eventifyappalpha.di
 
-import com.omrilhn.eventifyappalpha.data.UserRepository
+import com.omrilhn.eventifyappalpha.domain.repository.UserRepository
 import com.omrilhn.eventifyappalpha.network.UserApi
 import com.omrilhn.eventifyappalpha.utils.Constants
 import dagger.Module

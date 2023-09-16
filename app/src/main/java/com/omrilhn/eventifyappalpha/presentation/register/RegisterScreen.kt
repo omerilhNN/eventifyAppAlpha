@@ -1,8 +1,6 @@
 package com.omrilhn.eventifyappalpha.presentation.register
 
-import android.util.Log
 import androidx.compose.foundation.Image
-import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -14,51 +12,30 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.rounded.Lock
-import androidx.compose.material.icons.rounded.MailOutline
 import androidx.compose.material3.Button
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.DisposableEffect
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.SpanStyle
 import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.withStyle
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
-import androidx.lifecycle.viewModelScope
 import androidx.navigation.NavController
 import com.omrilhn.eventifyappalpha.R
-import com.omrilhn.eventifyappalpha.components.CheckBoxComponent
-import com.omrilhn.eventifyappalpha.components.ClickableLoginTextComponent
-import com.omrilhn.eventifyappalpha.components.DividerTextComponent
-import com.omrilhn.eventifyappalpha.components.InputTextField
-import com.omrilhn.eventifyappalpha.components.PasswordTextField
 import com.omrilhn.eventifyappalpha.model.UserInfo
-import com.omrilhn.eventifyappalpha.navigation.EventifyAppRouter
-import com.omrilhn.eventifyappalpha.navigation.Screen
-import com.omrilhn.eventifyappalpha.presentation.components.StandardTextField
+import com.omrilhn.eventifyappalpha.core.presentation.components.StandardTextField
 import com.omrilhn.eventifyappalpha.presentation.theme.SpaceLarge
 import com.omrilhn.eventifyappalpha.presentation.theme.SpaceMedium
 import kotlinx.coroutines.DelicateCoroutinesApi
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.async
-import kotlinx.coroutines.launch
 
 @OptIn(DelicateCoroutinesApi::class)
 @Composable
@@ -150,10 +127,10 @@ fun RegisterScreen(
 
             Spacer(modifier = Modifier.height(20.dp))
 
-            CheckBoxComponent(value = stringResource(id = R.string.terms_and_conditionsTR),
-                onTextSelected = {
-                    EventifyAppRouter.navigateTo(Screen.TermsAndConditionsScreen)
-                })
+//            CheckBoxComponent(value = stringResource(id = R.string.terms_and_conditionsTR),
+//                onTextSelected = {
+//                    EventifyAppRouter.navigateTo(Screen.TermsAndConditionsScreen)
+//                })
             Spacer(modifier = Modifier.height(25.dp))
             Button(
                 onClick = {

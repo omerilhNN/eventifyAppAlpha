@@ -1,6 +1,6 @@
 package com.omrilhn.eventifyappalpha
 
-import StandardScaffold
+import com.omrilhn.eventifyappalpha.core.presentation.components.StandardScaffold
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -16,7 +16,7 @@ import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import coil.ImageLoader
 import com.omrilhn.eventifyappalpha.presentation.theme.EventifyAppAlphaTheme
-import com.omrilhn.eventifyappalpha.presentation.components.Navigation
+import com.omrilhn.eventifyappalpha.core.presentation.components.Navigation
 import com.omrilhn.eventifyappalpha.utils.Screen
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject

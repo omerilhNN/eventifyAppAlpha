@@ -1,4 +1,4 @@
-package com.omrilhn.eventifyappalpha.presentation.components
+package com.omrilhn.eventifyappalpha.core.presentation.components
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
@@ -26,22 +26,20 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.navigation.compose.rememberNavController
 import com.omrilhn.eventifyappalpha.R
 import com.omrilhn.eventifyappalpha.model.EventCardData
 
 @Composable
 fun EventCard(
-        data: EventCardData,
-        onClicked: () -> Unit
+    data: EventCardData,
+    onEventCardClicked: () -> Unit
     ) {
     Card(modifier = Modifier
         .fillMaxWidth(0.8f)
         .padding(5.dp)
-        .clickable { onClicked() },
+        .clickable { onEventCardClicked() },
         elevation = CardDefaults.cardElevation(defaultElevation=5.dp),
         shape = RoundedCornerShape(corner = CornerSize(10.dp)),
         colors = CardDefaults.cardColors(containerColor =MaterialTheme.colorScheme.surface)

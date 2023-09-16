@@ -1,4 +1,4 @@
-package com.omrilhn.eventifyappalpha.presentation.components
+package com.omrilhn.eventifyappalpha.core.presentation.components
 
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.SnackbarHostState
@@ -48,7 +48,12 @@ fun Navigation(
         RegisterScreen(navController = navController)
     }
     composable(Screen.MainFeedScreen.route){
-        MainFeedScreen(navController = navController,eventDataList,state = snackbarHostState)
+        MainFeedScreen(
+            imageLoader=imageLoader,
+            snackbarHostState = snackbarHostState,
+            onNavigate = navController::navigate,
+            onNavigateUp = navController::navigateUp
+            )
     }
     composable(Screen.NotificationsScreen.route){
         NotificationsScreen(navController = navController,state = snackbarHostState)

@@ -3,22 +3,17 @@ package com.omrilhn.eventifyappalpha.presentation.register
 import androidx.compose.runtime.State
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
-import com.omrilhn.eventifyappalpha.data.UserRepository
+import com.omrilhn.eventifyappalpha.domain.repository.UserRepository
 import com.omrilhn.eventifyappalpha.model.UserInfo
 import com.omrilhn.eventifyappalpha.responses.UserInfoResponse
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
-import retrofit2.Response
 import javax.inject.Inject
 
 @HiltViewModel
-class RegisterViewModel @Inject constructor(private val repository: UserRepository )
+class RegisterViewModel @Inject constructor(private val repository: UserRepository)
     : ViewModel() {
 
     private val _nameText = MutableStateFlow<String>("")
