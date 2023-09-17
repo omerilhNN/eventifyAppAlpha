@@ -1,7 +1,9 @@
 package com.omrilhn.eventifyappalpha.presentation.main_feed
 
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -9,7 +11,9 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.FilterAlt
 import androidx.compose.material.icons.filled.Search
+import androidx.compose.material.icons.filled.Settings
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.SnackbarHostState
@@ -49,24 +53,34 @@ fun MainFeedScreen(
     Column(
         modifier = Modifier.fillMaxWidth()
     ) {
-        StandardToolbar(
-            onNavigateUp = onNavigateUp,
-            title = {
-                StandardTextField(onValueChange = {
-                    viewModel.setSearchText(it)
-                },
-                    modifier = Modifier.fillMaxWidth()
-                        .padding(10.dp)
-                        .clip(RoundedCornerShape(4.dp)),
                     leadingIcon = Icons.Default.Search,
-                    hint = "Etkinlik,organizatör,sanatçı",
-                    error="Sonuç bulunamadı",
-                    singleLine = true
+//        Row(modifier = Modifier.fillMaxWidth()) {
+            StandardToolbar(
+                onNavigateUp = onNavigateUp,
+                title = {
+                    StandardTextField(onValueChange = {
+                        viewModel.setSearchText(it)
+                    },
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .padding(10.dp)
+                            .clip(RoundedCornerShape(4.dp)),
+                        leadingIcon = Icons.Default.Search,
+                        hint = "Etkinlik,organizatör,sanatçı",
+                        error="Sonuç bulunamadı",
+                        singleLine = true
                     )
-            },
-            modifier = Modifier.fillMaxWidth(),
-            showBackArrow = false,
-        )
+                },
+                modifier = Modifier.fillMaxWidth(),
+                showBackArrow = false,
+            )
+            //FilterIconButton
+//            IconButton(onClick = { }) {
+//                Image(imageVector = Icons.Default.FilterAlt, contentDescription = "Filter")
+//
+//            }
+//        }
+
         Box(modifier = Modifier.fillMaxSize()) {
             LazyColumn {
                 items(pagingState.items.size) { i ->
