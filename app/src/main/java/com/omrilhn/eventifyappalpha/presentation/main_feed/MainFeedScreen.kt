@@ -53,7 +53,6 @@ fun MainFeedScreen(
     Column(
         modifier = Modifier.fillMaxWidth()
     ) {
-                    leadingIcon = Icons.Default.Search,
 //        Row(modifier = Modifier.fillMaxWidth()) {
             StandardToolbar(
                 onNavigateUp = onNavigateUp,
