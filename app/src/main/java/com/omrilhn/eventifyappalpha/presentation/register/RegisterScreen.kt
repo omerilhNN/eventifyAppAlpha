@@ -134,9 +134,7 @@ fun RegisterScreen(
             Spacer(modifier = Modifier.height(25.dp))
             Button(
                 onClick = {
-                   LaunchedEffect(){
-                       viewModel.addUser(userInfo)
-                   }
+
                 },
                 modifier = Modifier.align(Alignment.CenterHorizontally)
             ) {

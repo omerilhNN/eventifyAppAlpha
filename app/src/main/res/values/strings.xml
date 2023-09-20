@@ -20,6 +20,7 @@
     <string name ="registerTR">Kayıt Ol</string>
     <string name ="loginTR">Giriş Yap</string>
     <string name ="login_hintTR">E-Mail</string>
+    <string name ="phone_hintTR">Telefon numaranız</string>
     <string name ="dont_have_an_account_yetTR">Hala hesap oluşturmadınız mı?</string>
     <string name ="forgot_passwordTR">Şifrenizi mi unuttunuz?</string>
     <string name ="other_loginOptionsTR">Diğer giriş seçenekleri</string>

@@ -1,5 +1,9 @@
 package com.omrilhn.eventifyappalpha.presentation.login
 
+import android.app.Activity
+import android.content.Context
+import android.content.ContextWrapper
+import android.util.Log
 import android.widget.Toast
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
@@ -32,10 +36,22 @@ import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
+import com.google.firebase.FirebaseException
+import com.google.firebase.FirebaseTooManyRequestsException
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException
+import com.google.firebase.auth.FirebaseAuthMissingActivityForRecaptchaException
+import com.google.firebase.auth.PhoneAuthCredential
+import com.google.firebase.auth.PhoneAuthOptions
+import com.google.firebase.auth.PhoneAuthProvider
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.ktx.Firebase
 import com.omrilhn.eventifyappalpha.R
 import com.omrilhn.eventifyappalpha.core.presentation.components.StandardTextField
 import com.omrilhn.eventifyappalpha.presentation.theme.SpaceLarge
 import com.omrilhn.eventifyappalpha.presentation.theme.SpaceMedium
+import timber.log.Timber
+import java.util.concurrent.TimeUnit
 
 
 @Composable
@@ -44,13 +60,16 @@ fun LoginScreen(
     viewModel: LoginViewModel = hiltViewModel(),
     onNavigate: (String) -> Unit = {},
     loginState:LoginState,
+    authViewModel:AuthenticationViewModel = hiltViewModel(),
     onLoginClick: () -> Unit
 ) {
     // **********************************************\\
     val emailText by viewModel.emailText.collectAsState()
     val passwordText by viewModel.passwordText.collectAsState()
+    val phoneText by viewModel.emailText.collectAsState()
 
     val context = LocalContext.current
+
     LaunchedEffect(key1 = loginState.loginError){//If sign in error value changes -> exec. coroutineScope
         loginState.loginError?.let { error-> //if loginError is not null then do these
             Toast.makeText(
@@ -60,6 +79,16 @@ fun LoginScreen(
             ).show()
         }
     }
+    fun Context.findActivity(): Activity? = when (this) {
+        is Activity -> this
+        is ContextWrapper -> baseContext.findActivity()
+        else -> null
+    }
+    LaunchedEffect(Unit) {
+        val activity = context.findActivity() ?: return@LaunchedEffect
+        authViewModel.setActivity(activity)
+    }
+
 
     Box(
         modifier = Modifier
@@ -91,13 +120,13 @@ fun LoginScreen(
 
                 Spacer(modifier = Modifier.height(SpaceMedium))
 
-                //Email field
-               StandardTextField(text = emailText,
+                //Phone number field
+               StandardTextField(text = phoneText,
                    onValueChange = {
-                       viewModel.setEmailText(it)
-                   }, keyboardType = KeyboardType.Email
-                   ,error = viewModel.emailError.value
-                   ,hint = stringResource(id = R.string.login_hintTR))
+                       viewModel.setPhoneText(it)
+                   }, keyboardType = KeyboardType.Phone
+                   ,error = viewModel.phoneError.value
+                   ,hint = stringResource(id = R.string.phone_hintTR))
 
                 Spacer(modifier = Modifier.height(SpaceMedium))
 
@@ -126,6 +155,7 @@ fun LoginScreen(
                     Text(text = stringResource(id = R.string.loginTR),
                         color = MaterialTheme.colorScheme.onPrimary)
                 }
+
                 }
         Text(
             text = buildAnnotatedString {

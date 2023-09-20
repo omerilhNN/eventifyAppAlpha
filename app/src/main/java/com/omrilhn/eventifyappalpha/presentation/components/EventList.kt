@@ -23,6 +23,7 @@ data class EventList (
                 it.contains(query,ignoreCase = true)
             }
         }
+        return true
     }
 }
 

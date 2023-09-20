@@ -4,12 +4,15 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.SnackbarHostState
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import coil.ImageLoader
 import com.omrilhn.eventifyappalpha.model.EventCardData
+import com.omrilhn.eventifyappalpha.presentation.PersonDetailsScreen
 import com.omrilhn.eventifyappalpha.presentation.campaign.CampaignScreen
+import com.omrilhn.eventifyappalpha.presentation.login.AuthenticationViewModel
 import com.omrilhn.eventifyappalpha.presentation.login.LoginScreen
 import com.omrilhn.eventifyappalpha.presentation.login.LoginState
 import com.omrilhn.eventifyappalpha.presentation.main_feed.MainFeedScreen
@@ -24,11 +27,14 @@ fun Navigation(
     navController: NavHostController,
     snackbarHostState: SnackbarHostState,
     imageLoader: ImageLoader
-) {  NavHost(
+) {
+    val authViewModel = hiltViewModel<AuthenticationViewModel>()
+    NavHost(
     navController = navController,
     startDestination = Screen.SplashScreen.route,
     modifier = Modifier.fillMaxSize()
     ){
+
     //TRY GETTING EVENTS BY VIEWMODEL AFTER TESTING THIS
     val eventDataList = listOf(
         EventCardData("NewYear","1","1","1"),
@@ -40,12 +46,18 @@ fun Navigation(
     }
     composable(Screen.LoginScreen.route){
         LoginScreen(navController = navController, onLoginClick = {
-            navController.navigate(Screen.MainFeedScreen.route)},
-            loginState = LoginState(false)
+//            navController.navigate(Screen.MainFeedScreen.route)
+            authViewModel.send("5512406417")
+                                                                  },
+            loginState = LoginState(false),
+            authViewModel = authViewModel
         )
     }
     composable(Screen.RegisterScreen.route){
         RegisterScreen(navController = navController)
+    }
+    composable(Screen.PersonDetails.route){
+        PersonDetailsScreen(navController = navController)
     }
     composable(Screen.MainFeedScreen.route){
         MainFeedScreen(
@@ -69,3 +81,4 @@ fun Navigation(
 
 
 }
+

@@ -1,41 +1,33 @@
 {
   "project_info": {
-    "project_number": "679990019870",
-    "project_id": "eventifyappalpha",
-    "storage_bucket": "eventifyappalpha.appspot.com"
+    "project_number": "112619791545",
+    "project_id": "eventifyapp-43941",
+    "storage_bucket": "eventifyapp-43941.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:679990019870:android:bd96e960e3ea1270876b0f",
+        "mobilesdk_app_id": "1:112619791545:android:a1ce224aca0837f0f86768",
         "android_client_info": {
           "package_name": "com.omrilhn.eventifyappalpha"
         }
       },
       "oauth_client": [
         {
-          "client_id": "679990019870-2uq1938nvg0p93i07d8fachg59doeldb.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "com.omrilhn.eventifyappalpha",
-            "certificate_hash": "c694cfb40c2ddadca853403cc8d51cc008a2e2f4"
-          }
-        },
-        {
-          "client_id": "679990019870-otkqdmlvlctdflsk5tlk7sct12l0f75f.apps.googleusercontent.com",
+          "client_id": "112619791545-l93f18aiabj0a3bhqf3mtb0q1jci8gqn.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyDWPhxP2rq_q37J4GUh9o3LYK-AfK2ISbM"
+          "current_key": "AIzaSyCp5aPyvFv_j9PPczga6pylii5ZLLq7b8U"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "679990019870-otkqdmlvlctdflsk5tlk7sct12l0f75f.apps.googleusercontent.com",
+              "client_id": "112619791545-l93f18aiabj0a3bhqf3mtb0q1jci8gqn.apps.googleusercontent.com",
               "client_type": 3
             }
           ]
