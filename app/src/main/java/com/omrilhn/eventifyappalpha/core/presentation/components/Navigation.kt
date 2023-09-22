@@ -3,6 +3,8 @@ package com.omrilhn.eventifyappalpha.core.presentation.components
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.SnackbarHostState
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
@@ -29,6 +31,7 @@ fun Navigation(
     imageLoader: ImageLoader
 ) {
     val authViewModel = hiltViewModel<AuthenticationViewModel>()
+    val phoneText by authViewModel.phoneNumberText.collectAsState()
     NavHost(
     navController = navController,
     startDestination = Screen.SplashScreen.route,
@@ -45,12 +48,13 @@ fun Navigation(
         SplashScreen(navController = navController)
     }
     composable(Screen.LoginScreen.route){
-        LoginScreen(navController = navController, onLoginClick = {
+        LoginScreen(navController = navController,
+            authViewModel = authViewModel,
+            onLoginClick = {
 //            navController.navigate(Screen.MainFeedScreen.route)
-            authViewModel.send("5512406417")
-                                                                  },
-            loginState = LoginState(false),
-            authViewModel = authViewModel
+            authViewModel.send(phoneText) },
+            loginState = LoginState(false)
+
         )
     }
     composable(Screen.RegisterScreen.route){

@@ -3,7 +3,6 @@ package com.omrilhn.eventifyappalpha.presentation.login
 import android.app.Activity
 import android.content.Context
 import android.content.ContextWrapper
-import android.util.Log
 import android.widget.Toast
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
@@ -36,22 +35,10 @@ import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
-import com.google.firebase.FirebaseException
-import com.google.firebase.FirebaseTooManyRequestsException
-import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException
-import com.google.firebase.auth.FirebaseAuthMissingActivityForRecaptchaException
-import com.google.firebase.auth.PhoneAuthCredential
-import com.google.firebase.auth.PhoneAuthOptions
-import com.google.firebase.auth.PhoneAuthProvider
-import com.google.firebase.auth.ktx.auth
-import com.google.firebase.ktx.Firebase
 import com.omrilhn.eventifyappalpha.R
 import com.omrilhn.eventifyappalpha.core.presentation.components.StandardTextField
 import com.omrilhn.eventifyappalpha.presentation.theme.SpaceLarge
 import com.omrilhn.eventifyappalpha.presentation.theme.SpaceMedium
-import timber.log.Timber
-import java.util.concurrent.TimeUnit
 
 
 @Composable
@@ -66,7 +53,8 @@ fun LoginScreen(
     // **********************************************\\
     val emailText by viewModel.emailText.collectAsState()
     val passwordText by viewModel.passwordText.collectAsState()
-    val phoneText by viewModel.emailText.collectAsState()
+    val phoneOtpText by authViewModel.phoneNumberOtp.collectAsState()
+    val phoneNumberText by authViewModel.phoneNumberText.collectAsState()
 
     val context = LocalContext.current
 
@@ -121,9 +109,9 @@ fun LoginScreen(
                 Spacer(modifier = Modifier.height(SpaceMedium))
 
                 //Phone number field
-               StandardTextField(text = phoneText,
+               StandardTextField(text = phoneNumberText,
                    onValueChange = {
-                       viewModel.setPhoneText(it)
+                       authViewModel.setPhoneNumberText(it)
                    }, keyboardType = KeyboardType.Phone
                    ,error = viewModel.phoneError.value
                    ,hint = stringResource(id = R.string.phone_hintTR))

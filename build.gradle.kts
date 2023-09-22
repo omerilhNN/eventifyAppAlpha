@@ -1,7 +1,13 @@
 buildscript {
     dependencies {
-        classpath ("com.google.gms:google-services:4.3.15")
+        classpath ("com.google.gms:google-services:4.4.0")
     }
+    repositories {
+        google()
+        mavenCentral()
+    }
+
+
 }
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
 plugins {
@@ -11,3 +17,5 @@ plugins {
     id("com.google.dagger.hilt.android") version "2.44" apply false
     id ("com.android.library") version "7.4.0" apply false
 }
+val sourceCompatibility by extra(JavaVersion.VERSION_17)
+

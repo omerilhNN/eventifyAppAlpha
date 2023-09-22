@@ -1,4 +1,6 @@
 package com.omrilhn.eventifyappalpha.domain.use_cases
 
-class EventCardUseCases {
+import javax.inject.Inject
+
+class EventCardUseCases @Inject constructor() {
 }

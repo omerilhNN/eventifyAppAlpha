@@ -44,34 +44,34 @@ class MainFeedViewModel @Inject constructor(
     private val _pagingState = mutableStateOf<PagingState<EventCardData>>(PagingState())
     val pagingState: State<PagingState<EventCardData>> = _pagingState
 
-    private val paginator = DefaultPaginator(
-        onLoadUpdated = { isLoading ->
-            _pagingState.value = pagingState.value.copy(
-                isLoading = isLoading
-            )
-        },
-        onRequest = { page ->
-            eventCardUseCases.getPostsForFollows(page = page)
-        },
-        onSuccess = { events ->
-            _pagingState.value = pagingState.value.copy(
-                items = pagingState.value.items + events,
-                endReached = events.isEmpty(),
-                isLoading = false
-            )
-        },
-        onError = { uiText ->
-            _eventFlow.emit(UiEvent.ShowSnackbar(uiText))
-        }
-    )
+//    private val paginator = DefaultPaginator(
+//        onLoadUpdated = { isLoading ->
+//            _pagingState.value = pagingState.value.copy(
+//                isLoading = isLoading
+//            )
+//        },
+//        onRequest = { page ->
+//            eventCardUseCases.getPostsForFollows(page = page)
+//        },
+//        onSuccess = { events ->
+//            _pagingState.value = pagingState.value.copy(
+//                items = pagingState.value.items + events,
+//                endReached = events.isEmpty(),
+//                isLoading = false
+//            )
+//        },
+//        onError = { uiText ->
+//            _eventFlow.emit(UiEvent.ShowSnackbar(uiText))
+//        }
+
 
     init {
         loadNextPosts()
     }
     fun loadNextPosts() {
-        viewModelScope.launch {
-            paginator.loadNextItems()
-        }
+//        viewModelScope.launch {
+//            paginator.loadNextItems()
+//        }
     }
     //SearchBar function
     fun setSearchText(searchText:String){
