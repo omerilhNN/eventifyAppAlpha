@@ -10,7 +10,6 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
-import coil.ImageLoader
 import com.omrilhn.eventifyappalpha.model.EventCardData
 import com.omrilhn.eventifyappalpha.presentation.PersonDetailsScreen
 import com.omrilhn.eventifyappalpha.presentation.campaign.CampaignScreen
@@ -27,11 +26,12 @@ import com.omrilhn.eventifyappalpha.utils.Screen
 @Composable
 fun Navigation(
     navController: NavHostController,
-    snackbarHostState: SnackbarHostState,
-    imageLoader: ImageLoader
+    snackbarHostState: SnackbarHostState
+//    imageLoader: ImageLoader
 ) {
     val authViewModel = hiltViewModel<AuthenticationViewModel>()
     val phoneText by authViewModel.phoneNumberText.collectAsState()
+    val phoneOtp by authViewModel.phoneNumberOtp.collectAsState()
     NavHost(
     navController = navController,
     startDestination = Screen.SplashScreen.route,
@@ -52,7 +52,8 @@ fun Navigation(
             authViewModel = authViewModel,
             onLoginClick = {
 //            navController.navigate(Screen.MainFeedScreen.route)
-            authViewModel.send(phoneText) },
+            authViewModel.send(phoneText)
+                           },
             loginState = LoginState(false)
 
         )
@@ -64,12 +65,12 @@ fun Navigation(
         PersonDetailsScreen(navController = navController)
     }
     composable(Screen.MainFeedScreen.route){
-        MainFeedScreen(
-            imageLoader=imageLoader,
-            snackbarHostState = snackbarHostState,
-            onNavigate = navController::navigate,
-            onNavigateUp = navController::navigateUp
-            )
+//        MainFeedScreen(
+//            imageLoader=imageLoader,
+//            snackbarHostState = snackbarHostState,
+//            onNavigate = navController::navigate,
+//            onNavigateUp = navController::navigateUp
+//            )
     }
     composable(Screen.NotificationsScreen.route){
         NotificationsScreen(navController = navController,state = snackbarHostState)

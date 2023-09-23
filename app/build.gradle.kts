@@ -44,6 +44,9 @@ android {
     buildFeatures {
         compose = true
     }
+    kapt {
+        correctErrorTypes = true
+    }
     composeOptions {
         kotlinCompilerExtensionVersion = "1.4.3"
     }
@@ -95,12 +98,13 @@ dependencies {
     implementation("androidx.lifecycle:lifecycle-viewmodel-compose:2.6.1")
 
     //Firebase
-    implementation ("com.google.firebase:firebase-auth-ktx:22.1.1")
+    implementation(platform("com.google.firebase:firebase-bom:32.3.1"))
+    implementation ("com.google.firebase:firebase-auth-ktx")
     implementation ("com.google.android.gms:play-services-auth:20.7.0")
 
-    implementation ("io.coil-kt:coil-compose:2.4.0")
-//    implementation ("io.coil-kt:coil-compose-base:2.4.0")
-    implementation ("io.coil-kt:coil-svg:1.3.2")
+//    implementation ("io.coil-kt:coil-compose:2.4.0")
+////    implementation ("io.coil-kt:coil-compose-base:2.4.0")
+//    implementation ("io.coil-kt:coil-svg:1.3.2")
 
 
     implementation("androidx.core:core-ktx:1.12.0")

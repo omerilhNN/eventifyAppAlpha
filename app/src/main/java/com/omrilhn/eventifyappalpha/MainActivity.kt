@@ -17,8 +17,6 @@ import androidx.compose.ui.Modifier
 import androidx.navigation.NavBackStackEntry
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
-import coil.ImageLoader
-import coil.annotation.ExperimentalCoilApi
 import com.google.firebase.FirebaseException
 import com.google.firebase.FirebaseTooManyRequestsException
 import com.google.firebase.auth.FirebaseAuth
@@ -38,13 +36,10 @@ import java.util.concurrent.TimeUnit
 import javax.inject.Inject
 
 @ExperimentalComposeUiApi
-@ExperimentalCoilApi
 @ExperimentalMaterialApi
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
 
-    @Inject
-    lateinit var imageLoader : ImageLoader
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -67,7 +62,8 @@ class MainActivity : ComponentActivity() {
                         },
                         state = snackbarHostState
                     ) {
-                        Navigation(navController, snackbarHostState, imageLoader)
+                        //Imageloader removed
+                        Navigation(navController, snackbarHostState)
                     }
                 }
             }

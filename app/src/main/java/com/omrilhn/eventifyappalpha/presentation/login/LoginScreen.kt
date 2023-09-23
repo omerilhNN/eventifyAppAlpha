@@ -119,10 +119,10 @@ fun LoginScreen(
                 Spacer(modifier = Modifier.height(SpaceMedium))
 
                 //Password field
-                StandardTextField(text = passwordText,
+                StandardTextField(text = phoneOtpText,
                     onValueChange = {
-                        viewModel.setPasswordText(it)
-
+//                        viewModel.setPasswordText(it)
+                        authViewModel.setPhoneOtpText(it)
                     },
                     error = viewModel.passwordError.value,
                     hint = stringResource(id = R.string.passwordTR ),

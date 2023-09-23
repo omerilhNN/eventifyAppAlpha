@@ -27,7 +27,6 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
-import coil.ImageLoader
 import com.omrilhn.eventifyappalpha.core.presentation.components.EventCard
 import com.omrilhn.eventifyappalpha.core.presentation.components.StandardTextField
 import com.omrilhn.eventifyappalpha.core.presentation.components.StandardToolbar
@@ -36,7 +35,7 @@ import com.omrilhn.eventifyappalpha.utils.Screen
 
 @Composable
 fun MainFeedScreen(
-    imageLoader: ImageLoader,
+//    imageLoader: ImageLoader,
     snackbarHostState: SnackbarHostState,
     onNavigate: (String) -> Unit = {},
     onNavigateUp: () -> Unit = {},

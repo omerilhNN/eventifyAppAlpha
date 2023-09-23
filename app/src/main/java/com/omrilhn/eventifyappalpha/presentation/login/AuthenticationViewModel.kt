@@ -35,7 +35,7 @@ class AuthenticationViewModel @Inject constructor(
     private lateinit var baseBuilder: PhoneAuthOptions.Builder
 
     fun setActivity(activity: Activity) {
-        baseBuilder = PhoneAuthOptions.newBuilder().setActivity(activity)
+        baseBuilder = baseBuilder.setActivity(activity)
     }
     fun send(mobileNum: String) {
         val options = baseBuilder
@@ -43,19 +43,19 @@ class AuthenticationViewModel @Inject constructor(
             .setTimeout(60L, TimeUnit.SECONDS)
             .setCallbacks(  object :
                 PhoneAuthProvider.OnVerificationStateChangedCallbacks() {
-                override fun onVerificationCompleted(p0: PhoneAuthCredential) {
+                override fun onVerificationCompleted(credential: PhoneAuthCredential) {
                     handledException(customMessage = "Verification Completed")
                     //Update UI go to the 
 
                 }
 
-                override fun onVerificationFailed(p0: FirebaseException) {
+                override fun onVerificationFailed(e: FirebaseException) {
                     handledException(customMessage = "Verification Failed")
 
                 }
 
-                override fun onCodeSent(otp: String, p1: PhoneAuthProvider.ForceResendingToken) {
-                    super.onCodeSent(otp, p1)
+                override fun onCodeSent(otp: String, token: PhoneAuthProvider.ForceResendingToken) {
+                    super.onCodeSent(otp, token)
                     verificationOtp = otp
                     handledException(customMessage = "Otp Send Successfully")
 
@@ -66,7 +66,7 @@ class AuthenticationViewModel @Inject constructor(
 
     fun otpVerification(otp: String) {
         val credential = PhoneAuthProvider.getCredential(verificationOtp, otp)
-        FirebaseAuth.getInstance().signInWithCredential(credential)
+        mAuth.signInWithCredential(credential)
             .addOnCompleteListener { task ->
                 if (task.isSuccessful) {
                     handledException(customMessage = "Verification Successful")

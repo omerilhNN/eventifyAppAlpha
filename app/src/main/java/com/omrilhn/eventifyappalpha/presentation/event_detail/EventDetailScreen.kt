@@ -25,8 +25,6 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
-import coil.ImageLoader
-import coil.compose.rememberImagePainter
 import com.omrilhn.eventifyappalpha.R
 import com.omrilhn.eventifyappalpha.core.presentation.components.StandardToolbar
 import com.omrilhn.eventifyappalpha.presentation.theme.MediumGray
@@ -36,7 +34,7 @@ import com.omrilhn.eventifyappalpha.presentation.theme.SpaceLarge
 @Composable
 fun PostDetailScreen(
     snackbarHostState: SnackbarHostState,
-    imageLoader: ImageLoader,
+//    imageLoader: ImageLoader,
     onNavigate: (String) -> Unit = {},
     onNavigateUp: () -> Unit = {},
     viewModel: EventDetailViewModel = hiltViewModel(),
