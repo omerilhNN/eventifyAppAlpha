@@ -1,4 +1,4 @@
-package com.omrilhn.eventifyappalpha.presentation.login
+package com.omrilhn.eventifyappalpha.presentation.verification
 
 import android.app.Activity
 import android.content.Context
@@ -37,23 +37,23 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import com.omrilhn.eventifyappalpha.R
 import com.omrilhn.eventifyappalpha.core.presentation.components.StandardTextField
+import com.omrilhn.eventifyappalpha.presentation.login.AuthenticationViewModel
+import com.omrilhn.eventifyappalpha.presentation.login.LoginState
+import com.omrilhn.eventifyappalpha.presentation.login.LoginViewModel
 import com.omrilhn.eventifyappalpha.presentation.theme.SpaceLarge
 import com.omrilhn.eventifyappalpha.presentation.theme.SpaceMedium
 
 
 @Composable
-fun LoginScreen(
+fun VerificationScreen(
     navController: NavController,
     viewModel: LoginViewModel = hiltViewModel(),
     onNavigate: (String) -> Unit = {},
     loginState: LoginState,
     authViewModel: AuthenticationViewModel = hiltViewModel(),
-    onLoginClick: () -> Unit
-//    activity: Activity
+    onSubmitClick: () -> Unit
 ) {
-    // **********************************************\\
-    val emailText by viewModel.emailText.collectAsState()
-    val passwordText by viewModel.passwordText.collectAsState()
+
     val phoneOtpText by authViewModel.phoneNumberOtp.collectAsState()
     val phoneNumberText by authViewModel.phoneNumberText.collectAsState()
 
@@ -109,15 +109,6 @@ fun LoginScreen(
 
                 Spacer(modifier = Modifier.height(SpaceMedium))
 
-                //Phone number field
-               StandardTextField(text = phoneNumberText,
-                   onValueChange = {
-                       authViewModel.setPhoneNumberText(it)
-                   }, keyboardType = KeyboardType.Phone
-                   ,error = viewModel.phoneError.value
-                   ,hint = stringResource(id = R.string.phone_hintTR))
-
-                Spacer(modifier = Modifier.height(SpaceMedium))
 
                 //Password field
                 StandardTextField(text = phoneOtpText,
@@ -138,10 +129,10 @@ fun LoginScreen(
 
                 //Also manage Google sign in with onLoginClick parameter when you call this LoginScreen composable fun
                 Button(
-                    onClick = onLoginClick,
+                    onClick = onSubmitClick,
                     modifier = Modifier.align(Alignment.CenterHorizontally)
                 ){
-                    Text(text = stringResource(id = R.string.loginTR),
+                    Text(text = stringResource(id = R.string.submitTR),
                         color = MaterialTheme.colorScheme.onPrimary)
                 }
 
