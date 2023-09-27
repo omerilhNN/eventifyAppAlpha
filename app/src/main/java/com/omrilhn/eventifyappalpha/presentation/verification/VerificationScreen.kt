@@ -47,7 +47,7 @@ import com.omrilhn.eventifyappalpha.presentation.theme.SpaceMedium
 @Composable
 fun VerificationScreen(
     navController: NavController,
-    viewModel: LoginViewModel = hiltViewModel(),
+    loginViewModel: LoginViewModel = hiltViewModel(),
     onNavigate: (String) -> Unit = {},
     loginState: LoginState,
     authViewModel: AuthenticationViewModel = hiltViewModel(),
@@ -116,12 +116,12 @@ fun VerificationScreen(
 //                        viewModel.setPasswordText(it)
                         authViewModel.setPhoneOtpText(it)
                     },
-                    error = viewModel.passwordError.value,
+                    error = loginViewModel.passwordError.value,
                     hint = stringResource(id = R.string.passwordTR ),
                     keyboardType = KeyboardType.Password,
-                    isPasswordVisible = viewModel.showPassword.value,
+                    isPasswordVisible = loginViewModel.showPassword.value,
                     onPasswordToggleClick = {
-                        viewModel.setShowPassword(it)
+                        loginViewModel.setShowPassword(it)
                     })
 
                 Spacer(modifier = Modifier.height(SpaceMedium))

@@ -44,7 +44,7 @@ import com.omrilhn.eventifyappalpha.presentation.theme.SpaceMedium
 @Composable
 fun LoginScreen(
     navController: NavController,
-    viewModel: LoginViewModel = hiltViewModel(),
+    loginViewModel: LoginViewModel = hiltViewModel(),
     onNavigate: (String) -> Unit = {},
     loginState: LoginState,
     authViewModel: AuthenticationViewModel = hiltViewModel(),
@@ -52,8 +52,8 @@ fun LoginScreen(
 //    activity: Activity
 ) {
     // **********************************************\\
-    val emailText by viewModel.emailText.collectAsState()
-    val passwordText by viewModel.passwordText.collectAsState()
+    val emailText by loginViewModel.emailText.collectAsState()
+    val passwordText by loginViewModel.passwordText.collectAsState()
     val phoneOtpText by authViewModel.phoneNumberOtp.collectAsState()
     val phoneNumberText by authViewModel.phoneNumberText.collectAsState()
 
@@ -114,7 +114,7 @@ fun LoginScreen(
                    onValueChange = {
                        authViewModel.setPhoneNumberText(it)
                    }, keyboardType = KeyboardType.Phone
-                   ,error = viewModel.phoneError.value
+                   ,error = loginViewModel.phoneError.value
                    ,hint = stringResource(id = R.string.phone_hintTR))
 
                 Spacer(modifier = Modifier.height(SpaceMedium))
@@ -125,12 +125,12 @@ fun LoginScreen(
 //                        viewModel.setPasswordText(it)
                         authViewModel.setPhoneOtpText(it)
                     },
-                    error = viewModel.passwordError.value,
+                    error = loginViewModel.passwordError.value,
                     hint = stringResource(id = R.string.passwordTR ),
                     keyboardType = KeyboardType.Password,
-                    isPasswordVisible = viewModel.showPassword.value,
+                    isPasswordVisible = loginViewModel.showPassword.value,
                     onPasswordToggleClick = {
-                        viewModel.setShowPassword(it)
+                        loginViewModel.setShowPassword(it)
                     })
 
                 Spacer(modifier = Modifier.height(SpaceMedium))

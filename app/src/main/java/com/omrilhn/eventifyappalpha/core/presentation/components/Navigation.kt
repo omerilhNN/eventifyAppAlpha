@@ -12,12 +12,14 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
+import coil.ImageLoader
 import com.omrilhn.eventifyappalpha.model.EventCardData
 import com.omrilhn.eventifyappalpha.presentation.PersonDetailsScreen
 import com.omrilhn.eventifyappalpha.presentation.campaign.CampaignScreen
 import com.omrilhn.eventifyappalpha.presentation.login.AuthenticationViewModel
 import com.omrilhn.eventifyappalpha.presentation.login.LoginScreen
 import com.omrilhn.eventifyappalpha.presentation.login.LoginState
+import com.omrilhn.eventifyappalpha.presentation.login.LoginViewModel
 import com.omrilhn.eventifyappalpha.presentation.notifications.NotificationsScreen
 import com.omrilhn.eventifyappalpha.presentation.profile.ProfileScreen
 import com.omrilhn.eventifyappalpha.presentation.register.RegisterScreen
@@ -30,12 +32,13 @@ fun Navigation(
     navController: NavHostController,
     snackbarHostState: SnackbarHostState,
 //    activity:Activity
-//    imageLoader: ImageLoader
+    imageLoader: ImageLoader
 ) {
     val authViewModel = hiltViewModel<AuthenticationViewModel>()
+    val loginViewModel = hiltViewModel<LoginViewModel>()
     val phoneText by authViewModel.phoneNumberText.collectAsState()
     val phoneOtp by authViewModel.phoneNumberOtp.collectAsState()
-    var verificationId = authViewModel.storedVerificationId
+    val verificationId by authViewModel.storedVerificationId.collectAsState()
 
     NavHost(
     navController = navController,
@@ -54,11 +57,13 @@ fun Navigation(
     }
     composable(Screen.LoginScreen.route){
         LoginScreen(navController = navController,
+            loginViewModel = loginViewModel,
             authViewModel = authViewModel,
             onLoginClick = {
 //            navController.navigate(Screen.MainFeedScreen.route)
+             authViewModel.startPhoneNumberVerification(phoneText)
              navController.navigate(Screen.VerificationScreen.route)
-             authViewModel.startPhoneNumberVerification(phoneText)},
+             },
             loginState = LoginState(false)
 //            activity = activity
 //
@@ -66,7 +71,9 @@ fun Navigation(
     }
     composable(Screen.VerificationScreen.route){
         VerificationScreen(navController = navController,
-            loginState =LoginState(false),
+            loginViewModel = loginViewModel,
+            authViewModel = authViewModel,
+            loginState =LoginState(true),
             onSubmitClick = {
                 Log.d("TAG","ONSUBMIT BUTTON CLICKED")
                 authViewModel.signInWithPhoneAuthCredential(verificationId,phoneOtp ) ///!!!!!!! error

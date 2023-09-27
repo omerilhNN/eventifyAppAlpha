@@ -70,6 +70,7 @@ dependencies {
 
     //Dagger - Hilt
     implementation ("com.google.dagger:hilt-android:2.47")
+    implementation("com.android.volley:volley:1.2.1")
 
     // Dagger - Hilt
     kapt ("com.google.dagger:hilt-android-compiler:2.47")
@@ -102,9 +103,12 @@ dependencies {
     implementation ("com.google.firebase:firebase-auth-ktx")
     implementation ("com.google.android.gms:play-services-auth:20.7.0")
 
-//    implementation ("io.coil-kt:coil-compose:2.4.0")
+    implementation ("io.coil-kt:coil-compose:2.4.0")
 ////    implementation ("io.coil-kt:coil-compose-base:2.4.0")
-//    implementation ("io.coil-kt:coil-svg:1.3.2")
+    implementation ("io.coil-kt:coil-svg:1.3.2")
+
+//    implementation ("com.google.dagger:dagger:2.47")
+//    kapt ("com.google.dagger:dagger-compiler:2.47")
 
 
     implementation("androidx.core:core-ktx:1.12.0")

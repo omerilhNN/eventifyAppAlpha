@@ -30,10 +30,10 @@ class AuthenticationViewModel @Inject constructor(
     private val mAuth = FirebaseAuth.getInstance()
 
     private lateinit var resendToken: PhoneAuthProvider.ForceResendingToken
-     var storedVerificationId : String? = null
+//     var storedVerificationId : String? = null
 
-//    private val _storedVerificationId = MutableStateFlow<String?>("")
-//    val storedVerificationId : StateFlow<String?> get() = _storedVerificationId
+    private val _storedVerificationId = MutableStateFlow<String?>("")
+    val storedVerificationId : StateFlow<String?> get() = _storedVerificationId
 
 //    private var _credential = MutableStateFlow<PhoneAuthCredential?>(PhoneAuthProvider.getCredential("",""))
 //    val credential: StateFlow<PhoneAuthCredential?> get() = _credential
@@ -62,7 +62,7 @@ class AuthenticationViewModel @Inject constructor(
 //                authRepository.signInWithPhoneNumber(credential)
 //            }
             Log.d("TAG", "onVerificationCompleted:$credential")
-            signInWithPhoneAuthCredential(storedVerificationId,_phoneNumberOtp.value)
+            signInWithPhoneAuthCredential(_storedVerificationId.value  ,_phoneNumberOtp.value)
         }
 
         override fun onVerificationFailed(e: FirebaseException) {
@@ -91,7 +91,7 @@ class AuthenticationViewModel @Inject constructor(
             Log.d("TAG", "onCodeSent:$verificationId")
 
             // Save verification ID and resending token so we can use them later
-            storedVerificationId= verificationId
+            _storedVerificationId.value= verificationId
             resendToken = token
         }
     }
