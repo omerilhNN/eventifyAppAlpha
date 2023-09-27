@@ -35,7 +35,8 @@ fun Navigation(
     val authViewModel = hiltViewModel<AuthenticationViewModel>()
     val phoneText by authViewModel.phoneNumberText.collectAsState()
     val phoneOtp by authViewModel.phoneNumberOtp.collectAsState()
-    val verificationId = authViewModel.storedVerificationId
+    var verificationId = authViewModel.storedVerificationId
+
     NavHost(
     navController = navController,
     startDestination = Screen.SplashScreen.route,

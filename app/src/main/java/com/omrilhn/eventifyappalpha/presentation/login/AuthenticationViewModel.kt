@@ -30,10 +30,15 @@ class AuthenticationViewModel @Inject constructor(
     private val mAuth = FirebaseAuth.getInstance()
 
     private lateinit var resendToken: PhoneAuthProvider.ForceResendingToken
-    var storedVerificationId :String? = null
+     var storedVerificationId : String? = null
+
+//    private val _storedVerificationId = MutableStateFlow<String?>("")
+//    val storedVerificationId : StateFlow<String?> get() = _storedVerificationId
 
 //    private var _credential = MutableStateFlow<PhoneAuthCredential?>(PhoneAuthProvider.getCredential("",""))
 //    val credential: StateFlow<PhoneAuthCredential?> get() = _credential
+
+    private lateinit var _credential : PhoneAuthCredential
 
     private val _phoneNumberOtp = MutableStateFlow<String>("")
     val phoneNumberOtp : StateFlow<String> get() = _phoneNumberOtp
@@ -86,7 +91,7 @@ class AuthenticationViewModel @Inject constructor(
             Log.d("TAG", "onCodeSent:$verificationId")
 
             // Save verification ID and resending token so we can use them later
-            storedVerificationId = verificationId
+            storedVerificationId= verificationId
             resendToken = token
         }
     }
@@ -154,8 +159,8 @@ class AuthenticationViewModel @Inject constructor(
         }
     }
 
-     fun verifyPhoneNumberWithCode(verificationId: String?, code: String) {
-         val credential = PhoneAuthProvider.getCredential(verificationId!!, code)
+     private fun verifyPhoneNumberWithCode(verificationId: String?, code: String) {
+         _credential = PhoneAuthProvider.getCredential(verificationId!!, code)
     }
 
      fun resendVerificationCode(
@@ -174,26 +179,26 @@ class AuthenticationViewModel @Inject constructor(
 
     //Try instead verificationId,code parameters
      fun signInWithPhoneAuthCredential(verificationId: String?,code:String) {
-        val credential = PhoneAuthProvider.getCredential(verificationId!!,code)
-        viewModelScope.launch {
-            authRepository.signInWithPhoneNumber(credential)
-        }
-//        mAuth.signInWithCredential(credential)
-//            .addOnCompleteListener { task ->
-//                if (task.isSuccessful) {
-//                    // Sign in success, update UI with the signed-in user's information
-//                    Log.d("TAG", "signInWithCredential:success")
-//
-//                    val user = task.result?.user
-//                } else {
-//                    // Sign in failed, display a message and update the UI
-//                    Log.w("TAG", "signInWithCredential:failure", task.exception)
-//                    if (task.exception is FirebaseAuthInvalidCredentialsException) {
-//                        // The verification code entered was invalid
-//                    }
-//                    // Update UI
-//                }
-//            }
+     verifyPhoneNumberWithCode(verificationId,code)
+//                viewModelScope.launch {
+//            authRepository.signInWithPhoneNumber(_credential)
+//        }
+        mAuth.signInWithCredential(_credential)
+            .addOnCompleteListener { task ->
+                if (task.isSuccessful) {
+                    // Sign in success, update UI with the signed-in user's information
+                    Log.d("TAG", "signInWithCredential:success")
+
+                    val user = task.result?.user
+                } else {
+                    // Sign in failed, display a message and update the UI
+                    Log.w("TAG", "signInWithCredential:failure", task.exception)
+                    if (task.exception is FirebaseAuthInvalidCredentialsException) {
+                        // The verification code entered was invalid
+                    }
+                    // Update UI
+                }
+            }
     }
     fun setPhoneOtpText(otp: String){
         _phoneNumberOtp.value = otp
