@@ -37,7 +37,6 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import com.omrilhn.eventifyappalpha.R
 import com.omrilhn.eventifyappalpha.core.presentation.components.StandardTextField
-import com.omrilhn.eventifyappalpha.presentation.login.AuthenticationViewModel
 import com.omrilhn.eventifyappalpha.presentation.login.LoginState
 import com.omrilhn.eventifyappalpha.presentation.login.LoginViewModel
 import com.omrilhn.eventifyappalpha.presentation.theme.SpaceLarge

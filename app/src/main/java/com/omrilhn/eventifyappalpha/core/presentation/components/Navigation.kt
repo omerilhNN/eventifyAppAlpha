@@ -1,6 +1,5 @@
 package com.omrilhn.eventifyappalpha.core.presentation.components
 
-import android.app.Activity
 import android.util.Log
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.SnackbarHostState
@@ -14,13 +13,14 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import coil.ImageLoader
 import com.omrilhn.eventifyappalpha.model.EventCardData
-import com.omrilhn.eventifyappalpha.presentation.PersonDetailsScreen
 import com.omrilhn.eventifyappalpha.presentation.campaign.CampaignScreen
-import com.omrilhn.eventifyappalpha.presentation.login.AuthenticationViewModel
+import com.omrilhn.eventifyappalpha.presentation.verification.AuthenticationViewModel
 import com.omrilhn.eventifyappalpha.presentation.login.LoginScreen
 import com.omrilhn.eventifyappalpha.presentation.login.LoginState
 import com.omrilhn.eventifyappalpha.presentation.login.LoginViewModel
 import com.omrilhn.eventifyappalpha.presentation.notifications.NotificationsScreen
+import com.omrilhn.eventifyappalpha.presentation.personal_detail.PersonalDetailScreen
+import com.omrilhn.eventifyappalpha.presentation.personal_detail.PersonalDetailViewModel
 import com.omrilhn.eventifyappalpha.presentation.profile.ProfileScreen
 import com.omrilhn.eventifyappalpha.presentation.register.RegisterScreen
 import com.omrilhn.eventifyappalpha.presentation.splash.SplashScreen
@@ -36,6 +36,8 @@ fun Navigation(
 ) {
     val authViewModel = hiltViewModel<AuthenticationViewModel>()
     val loginViewModel = hiltViewModel<LoginViewModel>()
+    val personalDetailViewModel = hiltViewModel<PersonalDetailViewModel>()
+
     val phoneText by authViewModel.phoneNumberText.collectAsState()
     val phoneOtp by authViewModel.phoneNumberOtp.collectAsState()
     val verificationId by authViewModel.storedVerificationId.collectAsState()
@@ -83,8 +85,13 @@ fun Navigation(
     composable(Screen.RegisterScreen.route){
         RegisterScreen(navController = navController)
     }
-    composable(Screen.PersonDetails.route){
-        PersonDetailsScreen(navController = navController)
+    composable(Screen.PersonalDetail.route){
+        PersonalDetailScreen(navController = navController,
+            personalDetailViewModel = personalDetailViewModel,
+            onSubmitClick = {
+                    Log.d("TAG","SubmitButtonClicked ${navController.currentDestination}")
+             }
+            )
     }
     composable(Screen.MainFeedScreen.route){
 //        MainFeedScreen(

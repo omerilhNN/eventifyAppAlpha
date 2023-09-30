@@ -1,4 +1,4 @@
-package com.omrilhn.eventifyappalpha.presentation.login
+package com.omrilhn.eventifyappalpha.presentation.verification
 
 import android.app.Activity
 import android.util.Log
@@ -30,13 +30,11 @@ class AuthenticationViewModel @Inject constructor(
     private val mAuth = FirebaseAuth.getInstance()
 
     private lateinit var resendToken: PhoneAuthProvider.ForceResendingToken
-//     var storedVerificationId : String? = null
 
     private val _storedVerificationId = MutableStateFlow<String?>("")
     val storedVerificationId : StateFlow<String?> get() = _storedVerificationId
 
-//    private var _credential = MutableStateFlow<PhoneAuthCredential?>(PhoneAuthProvider.getCredential("",""))
-//    val credential: StateFlow<PhoneAuthCredential?> get() = _credential
+
 
     private lateinit var _credential : PhoneAuthCredential
 
@@ -58,9 +56,7 @@ class AuthenticationViewModel @Inject constructor(
     private var callbacks = object : PhoneAuthProvider.OnVerificationStateChangedCallbacks() {
 
         override fun onVerificationCompleted(credential: PhoneAuthCredential) {
-//            viewModelScope.launch{
-//                authRepository.signInWithPhoneNumber(credential)
-//            }
+
             Log.d("TAG", "onVerificationCompleted:$credential")
             signInWithPhoneAuthCredential(_storedVerificationId.value  ,_phoneNumberOtp.value)
         }
@@ -118,24 +114,8 @@ class AuthenticationViewModel @Inject constructor(
 //                    handledException(customMessage = "Otp Send Successfully")
 //
 //                }
-//            }).build()
-//        PhoneAuthProvider.verifyPhoneNumber(options)
-//    }
-//
-//    fun otpVerification(otp: String) {
-//        val credential = PhoneAuthProvider.getCredential(verificationOtp, otp)
-//        mAuth.signInWithCredential(credential)
-//            .addOnCompleteListener { task ->
-//                if (task.isSuccessful) {
-//                    handledException(customMessage = "Verification Successful")
-//                    val user = task.result?.user
-//
-//                } else {
-//                    handledException(customMessage =  "Wrong Otp")
-//
-//                }
-//            }
-//    }
+
+
 //
 //
 //    private fun handledException(exception: Exception? = null, customMessage: String = "") {
@@ -177,19 +157,19 @@ class AuthenticationViewModel @Inject constructor(
         PhoneAuthProvider.verifyPhoneNumber(optionsBuilder.build())
     }
 
-    //Try instead verificationId,code parameters
+
      fun signInWithPhoneAuthCredential(verificationId: String?,code:String) {
      verifyPhoneNumberWithCode(verificationId,code)
-//                viewModelScope.launch {
-//            authRepository.signInWithPhoneNumber(_credential)
-//        }
+
         mAuth.signInWithCredential(_credential)
             .addOnCompleteListener { task ->
                 if (task.isSuccessful) {
                     // Sign in success, update UI with the signed-in user's information
                     Log.d("TAG", "signInWithCredential:success")
-
+                    val isNewUser = task.result?.additionalUserInfo?.isNewUser
                     val user = task.result?.user
+
+
                 } else {
                     // Sign in failed, display a message and update the UI
                     Log.w("TAG", "signInWithCredential:failure", task.exception)

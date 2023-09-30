@@ -3,12 +3,10 @@ package com.omrilhn.eventifyappalpha.presentation.main_feed
 import androidx.compose.runtime.State
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
 import com.omrilhn.eventifyappalpha.domain.use_cases.EventCardUseCases
 import com.omrilhn.eventifyappalpha.model.EventCardData
-import com.omrilhn.eventifyappalpha.presentation.components.EventList
+import com.omrilhn.eventifyappalpha.core.domain.models.EventList
 import com.omrilhn.eventifyappalpha.presentation.components.PagingState
-import com.omrilhn.eventifyappalpha.utils.DefaultPaginator
 import com.omrilhn.eventifyappalpha.utils.Event
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableSharedFlow
@@ -16,7 +14,6 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asSharedFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.combine
-import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel

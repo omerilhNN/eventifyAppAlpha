@@ -39,6 +39,7 @@ import com.omrilhn.eventifyappalpha.R
 import com.omrilhn.eventifyappalpha.core.presentation.components.StandardTextField
 import com.omrilhn.eventifyappalpha.presentation.theme.SpaceLarge
 import com.omrilhn.eventifyappalpha.presentation.theme.SpaceMedium
+import com.omrilhn.eventifyappalpha.presentation.verification.AuthenticationViewModel
 
 
 @Composable
@@ -120,20 +121,20 @@ fun LoginScreen(
                 Spacer(modifier = Modifier.height(SpaceMedium))
 
                 //Password field
-                StandardTextField(text = phoneOtpText,
-                    onValueChange = {
-//                        viewModel.setPasswordText(it)
-                        authViewModel.setPhoneOtpText(it)
-                    },
-                    error = loginViewModel.passwordError.value,
-                    hint = stringResource(id = R.string.passwordTR ),
-                    keyboardType = KeyboardType.Password,
-                    isPasswordVisible = loginViewModel.showPassword.value,
-                    onPasswordToggleClick = {
-                        loginViewModel.setShowPassword(it)
-                    })
+//                StandardTextField(text = phoneOtpText,
+//                    onValueChange = {
+////                        viewModel.setPasswordText(it)
+//                        authViewModel.setPhoneOtpText(it)
+//                    },
+//                    error = loginViewModel.passwordError.value,
+//                    hint = stringResource(id = R.string.passwordTR ),
+//                    keyboardType = KeyboardType.Password,
+//                    isPasswordVisible = loginViewModel.showPassword.value,
+//                    onPasswordToggleClick = {
+//                        loginViewModel.setShowPassword(it)
+//                    })
 
-                Spacer(modifier = Modifier.height(SpaceMedium))
+//                Spacer(modifier = Modifier.height(SpaceMedium))
 
 
                 //Also manage Google sign in with onLoginClick parameter when you call this LoginScreen composable fun
