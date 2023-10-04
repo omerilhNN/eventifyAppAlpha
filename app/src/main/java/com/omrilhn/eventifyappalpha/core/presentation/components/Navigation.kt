@@ -79,7 +79,6 @@ fun Navigation(
             onSubmitClick = {
                 Log.d("TAG","ONSUBMIT BUTTON CLICKED")
                 authViewModel.signInWithPhoneAuthCredential(verificationId,phoneOtp ) ///!!!!!!! error
-
             })
     }
     composable(Screen.RegisterScreen.route){

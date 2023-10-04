@@ -1,5 +1,6 @@
 package com.omrilhn.eventifyappalpha.presentation.register
 
+import android.util.Log
 import androidx.compose.runtime.State
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
@@ -65,6 +66,7 @@ class RegisterViewModel @Inject constructor(private val repository: UserReposito
             repository.addUser(userInfo)
     }
     suspend fun getUser(userInfoResponse:UserInfoResponse) {
+                Log.d("TAG","GET USER BLOCK SUCCEED")
                  repository.getUser(userInfoResponse)
          }
     }

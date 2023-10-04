@@ -18,5 +18,5 @@ interface UserApi {
 
     @Headers("Content-Type: application/json")
     @GET("account/login")
-     suspend fun getUser(@Body userData: UserInfoResponse) : Response<UserInfoResponse>
+     suspend fun getUser(@Body userData: UserInfoResponse) : Call<UserInfoResponse>
 }

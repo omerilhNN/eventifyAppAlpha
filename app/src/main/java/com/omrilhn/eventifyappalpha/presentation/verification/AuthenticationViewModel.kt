@@ -12,7 +12,9 @@ import com.google.firebase.auth.FirebaseAuthMissingActivityForRecaptchaException
 import com.google.firebase.auth.PhoneAuthCredential
 import com.google.firebase.auth.PhoneAuthOptions
 import com.google.firebase.auth.PhoneAuthProvider
+import com.omrilhn.eventifyappalpha.domain.repository.UserRepository
 import com.omrilhn.eventifyappalpha.presentation.verification.AuthRepository
+import com.omrilhn.eventifyappalpha.responses.UserInfoResponse
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -24,7 +26,8 @@ import javax.inject.Inject
 
 @HiltViewModel
 class AuthenticationViewModel @Inject constructor(
-    private val authRepository: AuthRepository
+    private val authRepository: AuthRepository,
+    private val userRepository: UserRepository
 ) : ViewModel() {
 
     private val mAuth = FirebaseAuth.getInstance()
@@ -185,6 +188,10 @@ class AuthenticationViewModel @Inject constructor(
     }
     fun setPhoneNumberText(phone: String){
         _phoneNumberText.value = phone
+    }
+    suspend fun getUser(userInfoResponse: UserInfoResponse) {
+        Log.d("TAG","GET USER BLOCK SUCCEED")
+        userRepository.getUser(userInfoResponse)
     }
 
 
