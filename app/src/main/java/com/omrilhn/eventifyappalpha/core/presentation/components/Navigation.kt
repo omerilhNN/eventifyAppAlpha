@@ -13,11 +13,14 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import coil.ImageLoader
 import com.omrilhn.eventifyappalpha.model.EventCardData
+import com.omrilhn.eventifyappalpha.network.EventApiService
 import com.omrilhn.eventifyappalpha.presentation.campaign.CampaignScreen
 import com.omrilhn.eventifyappalpha.presentation.verification.AuthenticationViewModel
 import com.omrilhn.eventifyappalpha.presentation.login.LoginScreen
 import com.omrilhn.eventifyappalpha.presentation.login.LoginState
 import com.omrilhn.eventifyappalpha.presentation.login.LoginViewModel
+import com.omrilhn.eventifyappalpha.presentation.main_feed.MainFeedViewModel
+import com.omrilhn.eventifyappalpha.presentation.main_feed.TestScreen
 import com.omrilhn.eventifyappalpha.presentation.notifications.NotificationsScreen
 import com.omrilhn.eventifyappalpha.presentation.personal_detail.PersonalDetailScreen
 import com.omrilhn.eventifyappalpha.presentation.personal_detail.PersonalDetailViewModel
@@ -37,6 +40,7 @@ fun Navigation(
     val authViewModel = hiltViewModel<AuthenticationViewModel>()
     val loginViewModel = hiltViewModel<LoginViewModel>()
     val personalDetailViewModel = hiltViewModel<PersonalDetailViewModel>()
+    val mainFeedViewModel = hiltViewModel<MainFeedViewModel>()
 
     val phoneText by authViewModel.phoneNumberText.collectAsState()
     val phoneOtp by authViewModel.phoneNumberOtp.collectAsState()
@@ -44,7 +48,7 @@ fun Navigation(
 
     NavHost(
     navController = navController,
-    startDestination = Screen.SplashScreen.route,
+    startDestination = Screen.TestScreen.route  ,
     modifier = Modifier.fillMaxSize()
     ){
 
@@ -100,6 +104,9 @@ fun Navigation(
 //            onNavigateUp = navController::navigateUp
 //            )
     }
+    composable(Screen.TestScreen.route){
+        TestScreen(navController = navController)
+    }    
     composable(Screen.NotificationsScreen.route){
         NotificationsScreen(navController = navController,state = snackbarHostState)
     }

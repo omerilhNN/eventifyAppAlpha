@@ -21,6 +21,7 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.SnackbarHostState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Alignment.Companion.Center
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -41,6 +42,7 @@ fun MainFeedScreen(
     onNavigateUp: () -> Unit = {},
     viewModel: MainFeedViewModel = hiltViewModel()
 ) {
+//    val events = viewModel.events.collectAsState()
     val pagingState = viewModel.pagingState.value
     val context = LocalContext.current
 //    LaunchedEffect(key1 = true) {
@@ -90,12 +92,12 @@ fun MainFeedScreen(
                     if (i >= pagingState.items.size - 1 && !pagingState.endReached && !pagingState.isLoading) {
                         viewModel.loadNextPosts()
                     }
-                    EventCard(
-                        data = eventCard,
-                        onEventCardClicked = {
-//                            onNavigate(Screen.EventDetailScreen.route + "/${eventCard.id}")
-                        }
-                    )
+//                    EventCard(
+//                        data = eventCard,
+//                        onEventCardClicked = {
+////                            onNavigate(Screen.EventDetailScreen.route + "/${eventCard.id}")
+//                        }
+//                    )
                     if (i < pagingState.items.size - 1) {
                         Spacer(modifier = Modifier.height(SpaceLarge))
                     }

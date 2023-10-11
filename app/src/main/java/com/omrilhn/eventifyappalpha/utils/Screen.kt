@@ -12,6 +12,7 @@ sealed class Screen(val route:String) {
     object CampaignScreen : Screen("campaign_screen")
     object NotificationsScreen : Screen("notifications_screen")
     object ProfileScreen : Screen("profile_screen")
+    object TestScreen:Screen("test_screen")
 
 
     object EventDetailScreen : Screen("event_detail_screen")

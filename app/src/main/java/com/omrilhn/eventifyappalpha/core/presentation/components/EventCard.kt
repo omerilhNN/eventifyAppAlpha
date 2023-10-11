@@ -15,6 +15,7 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.DateRange
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
+import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -28,12 +29,15 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.hilt.navigation.compose.hiltViewModel
 import com.omrilhn.eventifyappalpha.R
-import com.omrilhn.eventifyappalpha.model.EventCardData
+import com.omrilhn.eventifyappalpha.core.domain.models.EventsItem
+import com.omrilhn.eventifyappalpha.presentation.main_feed.MainFeedViewModel
 
 @Composable
 fun EventCard(
-    data: EventCardData,
+    data: EventsItem,
+    viewModel:MainFeedViewModel = hiltViewModel(),
     onEventCardClicked: () -> Unit
     ) {
     Card(modifier = Modifier
@@ -49,6 +53,10 @@ fun EventCard(
             .padding(5.dp),
             horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.Top){
+//            if(viewModel.data.value.loading == true){
+//                CircularProgressIndicator()
+//            }
+
             //-> Top to bottom -> Image, EventName,Ticketprice,person number,date,place
             Box(modifier = Modifier.fillMaxWidth(), contentAlignment = Alignment.TopCenter){
                 Image(painter = painterResource(id = R.drawable.party_picture),
@@ -57,7 +65,7 @@ fun EventCard(
                         .fillMaxWidth()
                         .clip(RoundedCornerShape(5.dp))
                 )
-                Text(text = data.eventName,modifier = Modifier
+                Text(text = data.title,modifier = Modifier
                     .padding(5.dp)
                     .clip(RoundedCornerShape(6.dp))
                     .align(Alignment.TopStart)
@@ -67,7 +75,7 @@ fun EventCard(
                     fontWeight = FontWeight.Light,
                 )
             }
-            Text(text = data.eventName,modifier = Modifier.fillMaxWidth(),
+            Text(text = data.location,modifier = Modifier.fillMaxWidth(),
                 fontWeight = FontWeight.Bold,
                 fontSize = 16.sp)
             Row(modifier = Modifier
@@ -76,9 +84,8 @@ fun EventCard(
                ){
                 Image(imageVector = Icons.Default.DateRange,contentDescription = null,
                     modifier = Modifier.size(12.dp))
-                Text(text = data.ticketPrice, fontSize = 12.sp,
+                Text(text = data.priceRange, fontSize = 12.sp,
                     textAlign= TextAlign.Start)
             }
         }
-    }
-}
+    }}

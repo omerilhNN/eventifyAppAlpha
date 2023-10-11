@@ -1,13 +1,15 @@
 package com.omrilhn.eventifyappalpha.di
 
 import android.app.Application
-import coil.ComponentRegistry
 import coil.ImageLoader
 import coil.decode.SvgDecoder
 import com.google.gson.Gson
+import com.omrilhn.eventifyappalpha.core.domain.repository.EventRepository
 import com.omrilhn.eventifyappalpha.domain.repository.UserRepository
+import com.omrilhn.eventifyappalpha.network.EventApiService
 import com.omrilhn.eventifyappalpha.network.UserApi
 import com.omrilhn.eventifyappalpha.utils.Constants
+import com.omrilhn.eventifyappalpha.utils.Constants.BASE_URL
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -22,9 +24,31 @@ object AppModule {
 
     @Singleton
     @Provides
-    fun provideUserRepository(
-        api:UserApi
-    ) = UserRepository(api)
+    fun provideRetrofit():Retrofit{
+        return Retrofit.Builder().baseUrl(BASE_URL)
+            .addConverterFactory(GsonConverterFactory.create())
+            .build()
+    }
+
+    @Singleton
+    @Provides
+    fun provideEventRepository(
+        service: EventApiService
+    ) = EventRepository(service)
+    @Singleton
+    @Provides
+    fun provideEventService():EventApiService{
+        return Retrofit.Builder()
+            .baseUrl(BASE_URL)
+            .addConverterFactory(GsonConverterFactory.create())
+            .build()
+            .create(EventApiService::class.java)
+    }
+
+//    @Provides
+//    fun provideUserRepository(
+//        api:UserApi
+//    ) = UserRepository(api)
     @Singleton
     @Provides
     fun provideUserApi(): UserApi {
@@ -34,13 +58,14 @@ object AppModule {
             .build()
             .create(UserApi::class.java)
     }
-    @Provides
     @Singleton
+    @Provides
+
     fun provideGson(): Gson {
         return Gson()
     }
-    @Provides
     @Singleton
+    @Provides
     fun provideImageLoader(app:Application): ImageLoader {
         return ImageLoader.Builder(app)
             .crossfade(true)
