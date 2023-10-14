@@ -7,6 +7,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.omrilhn.eventifyappalpha.core.domain.models.EventResponse
 import com.omrilhn.eventifyappalpha.core.domain.models.EventsItem
 import com.omrilhn.eventifyappalpha.domain.use_cases.EventCardUseCases
 import com.omrilhn.eventifyappalpha.core.domain.repository.EventRepository
@@ -29,7 +30,7 @@ class MainFeedViewModel @Inject constructor(
 
 //    private val _events = MutableStateFlow(emptyList<EventModel>())
 //    val events : StateFlow<List<EventModel>> get() = _events
-     val data: MutableState<DataOrException<ArrayList<EventsItem>,
+     val data: MutableState<DataOrException<EventResponse,
         Boolean,Exception>> = mutableStateOf(
             DataOrException(null,true,Exception("")))
     init{

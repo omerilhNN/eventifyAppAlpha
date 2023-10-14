@@ -12,6 +12,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
+import com.omrilhn.eventifyappalpha.core.domain.models.EventResponse
 import com.omrilhn.eventifyappalpha.core.domain.models.EventsItem
 import com.omrilhn.eventifyappalpha.core.presentation.components.EventCard
 import com.omrilhn.eventifyappalpha.data.DataOrException
@@ -21,25 +22,22 @@ fun TestScreen(
     navController: NavController,
     viewModel: MainFeedViewModel = hiltViewModel()
     ){
-    val data: DataOrException<ArrayList<EventsItem>, Boolean, Exception> by viewModel.data
-    val events = viewModel.data.value.data?.toMutableList()
+    val data: DataOrException<EventResponse, Boolean, Exception> by viewModel.data
+    val events = viewModel.data.value.data
 //
 //    LaunchedEffect(Unit){ FETCH EVENTS SİLİNMEDEN ÖNCE
 //            viewModel.fetchEvents()
 //    }
     Box(modifier = Modifier.fillMaxSize()){
         LazyColumn {
-            if (data.loading == true) {
                 if (events != null) {
-                    items(events.size){ item ->
-                        EventCard(data = events[item]) {
+                    items(events.res.size){ item ->
+                        EventCard(data = events.res[item]) {
                             Log.d("TAG","EVENT CARD HAS BEEN CLICKED")
 
                         }
                     }
                 }
             }
-    }
-
 }
     }
