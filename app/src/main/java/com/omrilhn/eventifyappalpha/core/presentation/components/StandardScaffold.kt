@@ -48,7 +48,7 @@ fun StandardScaffold(
             icon = Icons.Outlined.CardGiftcard,
             contentDescription = "Message"
         ),
-        //FAB
+        //Flating Action Button
         BottomNavItem(
             route = "-"),
 

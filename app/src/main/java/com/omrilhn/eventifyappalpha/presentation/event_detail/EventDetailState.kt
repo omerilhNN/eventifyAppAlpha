@@ -1,4 +1,8 @@
 package com.omrilhn.eventifyappalpha.presentation.event_detail
 
-class EventDetailState {
-}
+import com.omrilhn.eventifyappalpha.core.domain.models.EventResponse
+
+data class EventDetailState(
+    val eventResponse: EventResponse?=null,
+    val isLoadingEvent:Boolean = false
+)

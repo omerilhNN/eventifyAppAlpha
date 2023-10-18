@@ -9,7 +9,7 @@ import javax.inject.Singleton
 
 @Singleton
 interface EventApiService {
-    @GET(EVENTS_ENDPOINT)
+    @GET("events")
      suspend fun getEvents(): EventResponse
 
 

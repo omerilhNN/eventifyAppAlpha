@@ -26,13 +26,14 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.omrilhn.eventifyappalpha.R
+import com.omrilhn.eventifyappalpha.core.domain.util.showKeyboard
 import com.omrilhn.eventifyappalpha.core.presentation.components.StandardToolbar
 import com.omrilhn.eventifyappalpha.presentation.theme.MediumGray
 import com.omrilhn.eventifyappalpha.presentation.theme.ProfilePictureSizeMedium
 import com.omrilhn.eventifyappalpha.presentation.theme.SpaceLarge
 
 @Composable
-fun PostDetailScreen(
+fun EventDetailScreen(
     snackbarHostState: SnackbarHostState,
 //    imageLoader: ImageLoader,
     onNavigate: (String) -> Unit = {},
@@ -49,7 +50,7 @@ fun PostDetailScreen(
     val context = LocalContext.current
     LaunchedEffect(key1 = true) {
         if (shouldShowKeyboard) {
-//            context.showKeyboard()
+            context.showKeyboard()
             focusRequester.requestFocus()
         }
 //        viewModel.eventFlow.collectLatest { event ->
@@ -177,40 +178,9 @@ fun PostDetailScreen(
 //                        }
 //                    }
 //                }
-//                Spacer(modifier = Modifier.height(SpaceLarge))
 //            }
-//            items(state.comments) { comment ->
-//                Comment(
-//                    modifier = Modifier
-//                        .fillMaxWidth()
-//                        .padding(
-//                            horizontal = SpaceLarge,
-//                            vertical = SpaceSmall
-//                        ),
-//                    imageLoader = imageLoader,
-//                    comment = comment,
-//                    onLikeClick = {
-//                        viewModel.onEvent(PostDetailEvent.LikeComment(comment.id))
-//                    },
-//                    onLikedByClick = {
-//                        onNavigate(Screen.PersonListScreen.route + "/${comment.id}")
-//                    }
-//                )
-//            }
-//        }
-//        SendTextField(
-//            state = viewModel.commentTextFieldState.value,
-//            onValueChange = {
-//                viewModel.onEvent(PostDetailEvent.EnteredComment(it))
-//            },
-//            onSend = {
-//                viewModel.onEvent(PostDetailEvent.Comment)
-//            },
-//            hint = stringResource(id = R.string.enter_a_comment),
-//            isLoading = viewModel.commentState.value.isLoading,
-//            focusRequester = focusRequester
-//        )
-//    }
+
+
             }
         }
     }

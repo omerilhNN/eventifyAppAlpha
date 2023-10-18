@@ -49,8 +49,8 @@ class MainFeedViewModel @Inject constructor(
 //    private val _eventFlow = MutableSharedFlow<Event>()
 //    val eventFlow = _eventFlow.asSharedFlow()
 
-    private val _pagingState = mutableStateOf<PagingState<EventsItem>>(PagingState())
-    val pagingState: State<PagingState<EventsItem>> = _pagingState
+    private val _pagingState = mutableStateOf<PagingState<EventResponse>>(PagingState())
+    val pagingState: State<PagingState<EventResponse>> = _pagingState
 
     private fun getAllEvents(){
         viewModelScope.launch {
@@ -62,11 +62,6 @@ class MainFeedViewModel @Inject constructor(
         }
     }
 
-    //    private val _events = MutableStateFlow(listOf<EventList>())
-//    val events = searchText. //whenever our searchText or events changes then combine it with
-//        combine(_events){text,events->
-//
-//        }
 
 
 //    private val paginator = DefaultPaginator(
@@ -107,21 +102,7 @@ class MainFeedViewModel @Inject constructor(
 
 
 
-//    init {
-//        viewModelScope.launch {
-//            eventRepo.getEvents().enqueue(object : Callback<List<EventModel>>{
-//                override fun onResponse(call: Call<List<EventModel>>, response: Response<List<EventModel>>) {
-//                    if (response.isSuccessful) {
-//                        _events.value = response.body()!!
-//                    }
-//                }
-//
-//                override fun onFailure(call: Call<List<EventModel>>, t: Throwable) {
-//                    // Hata durumları ele alınabilir
-//                }
-//            })
-//        }
-//    }
+
 
     fun loadNextPosts() {
 //        viewModelScope.launch {

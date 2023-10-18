@@ -22,7 +22,6 @@ fun TestScreen(
     navController: NavController,
     viewModel: MainFeedViewModel = hiltViewModel()
     ){
-    val data: DataOrException<EventResponse, Boolean, Exception> by viewModel.data
     val events = viewModel.data.value.data
 //
 //    LaunchedEffect(Unit){ FETCH EVENTS SİLİNMEDEN ÖNCE

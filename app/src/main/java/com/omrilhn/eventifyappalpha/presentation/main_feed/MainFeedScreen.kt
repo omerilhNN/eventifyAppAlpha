@@ -1,5 +1,6 @@
 package com.omrilhn.eventifyappalpha.presentation.main_feed
 
+import android.util.Log
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -45,6 +46,7 @@ fun MainFeedScreen(
 //    val events = viewModel.events.collectAsState()
     val pagingState = viewModel.pagingState.value
     val context = LocalContext.current
+    val events = viewModel.data.value.data
 //    LaunchedEffect(key1 = true) {
 //        viewModel.eventFlow.collectLatest { event ->
 //            when (event) {
@@ -77,6 +79,13 @@ fun MainFeedScreen(
                 },
                 modifier = Modifier.fillMaxWidth(),
                 showBackArrow = false,
+                navActions = {
+                    IconButton(onClick = {
+//                        onNavigate(Screen.SearchScreen.route)
+                    }) {
+
+                    }
+                }
             )
             //FilterIconButton
 //            IconButton(onClick = { }) {
@@ -84,33 +93,47 @@ fun MainFeedScreen(
 //
 //            }
 //        }
-
-        Box(modifier = Modifier.fillMaxSize()) {
+        Box(modifier = Modifier.fillMaxSize()){
             LazyColumn {
-                items(pagingState.items.size) { i ->
-                    val eventCard = pagingState.items[i]
-                    if (i >= pagingState.items.size - 1 && !pagingState.endReached && !pagingState.isLoading) {
-                        viewModel.loadNextPosts()
-                    }
-//                    EventCard(
-//                        data = eventCard,
-//                        onEventCardClicked = {
-////                            onNavigate(Screen.EventDetailScreen.route + "/${eventCard.id}")
-//                        }
-//                    )
-                    if (i < pagingState.items.size - 1) {
-                        Spacer(modifier = Modifier.height(SpaceLarge))
+                if (events != null) {
+                    items(events.res.size){ item ->
+                        EventCard(data = events.res[item]) {
+                            Log.d("TAG","EVENT CARD HAS BEEN CLICKED")
+
+                        }
                     }
                 }
-                item {
-                    Spacer(modifier = Modifier.height(90.dp))
-                }
-            }
-            if (pagingState.isLoading) {
-                CircularProgressIndicator(
-                    modifier = Modifier.align(Center)
-                )
             }
         }
+
+
+        //FOR PAGINATION
+//        Box(modifier = Modifier.fillMaxSize()) {
+//            LazyColumn {
+//                items(pagingState.items.size) { i ->
+//                    val eventCard = pagingState.items[i]
+//                    if (i >= pagingState.items.size - 1 && !pagingState.endReached && !pagingState.isLoading) {
+//                        viewModel.loadNextPosts()
+//                    }
+////                    EventCard(
+////                        data = eventCard,
+////                        onEventCardClicked = {
+//////                            onNavigate(Screen.EventDetailScreen.route + "/${eventCard.id}")
+////                        }
+////                    )
+//                    if (i < pagingState.items.size - 1) {
+//                        Spacer(modifier = Modifier.height(SpaceLarge))
+//                    }
+//                }
+//                item {
+//                    Spacer(modifier = Modifier.height(90.dp))
+//                }
+//            }
+//            if (pagingState.isLoading) {
+//                CircularProgressIndicator(
+//                    modifier = Modifier.align(Center)
+//                )
+//            }
+//        }
     }
 }

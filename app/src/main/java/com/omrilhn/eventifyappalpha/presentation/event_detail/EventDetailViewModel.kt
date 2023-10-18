@@ -12,6 +12,7 @@ class EventDetailViewModel @Inject constructor(
     private val eventCardUseCases: EventCardUseCases,
     private val savedStateHandle: SavedStateHandle
 ) : ViewModel(){
+
     private val _state = mutableStateOf(EventDetailState())
     val state: State<EventDetailState> = _state
 
