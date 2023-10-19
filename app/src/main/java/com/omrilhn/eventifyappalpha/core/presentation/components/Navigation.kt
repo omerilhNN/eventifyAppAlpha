@@ -124,7 +124,7 @@ fun Navigation(
         NotificationsScreen(navController = navController,state = snackbarHostState)
     }
     composable(Screen.ProfileScreen.route){
-        ProfileScreen(navController = navController,state = snackbarHostState)
+        ProfileScreen(state = snackbarHostState,imageLoader = imageLoader)
     }
     composable(Screen.CampaignScreen.route){
         CampaignScreen(navController = navController,state = snackbarHostState)
