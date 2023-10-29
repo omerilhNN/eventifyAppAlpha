@@ -17,6 +17,7 @@ import coil.ImageLoader
 import com.omrilhn.eventifyappalpha.model.EventCardData
 import com.omrilhn.eventifyappalpha.network.EventApiService
 import com.omrilhn.eventifyappalpha.presentation.campaign.CampaignScreen
+import com.omrilhn.eventifyappalpha.presentation.connections.MyConnectionsScreen
 import com.omrilhn.eventifyappalpha.presentation.event_detail.EventDetailScreen
 import com.omrilhn.eventifyappalpha.presentation.verification.AuthenticationViewModel
 import com.omrilhn.eventifyappalpha.presentation.login.LoginScreen
@@ -119,17 +120,20 @@ fun Navigation(
     }
     composable(Screen.TestScreen.route){
         TestScreen(navController = navController)
-    }    
+    }
     composable(Screen.NotificationsScreen.route){
         NotificationsScreen(navController = navController,state = snackbarHostState)
     }
     composable(Screen.ProfileScreen.route){
-        ProfileScreen(state = snackbarHostState,imageLoader = imageLoader)
+        ProfileScreen(navController = navController,state = snackbarHostState,imageLoader = imageLoader)
     }
     composable(Screen.CampaignScreen.route){
         CampaignScreen(navController = navController,state = snackbarHostState)
     }
-}
+    composable(Screen.MyConnectionsScreen.route){
+        MyConnectionsScreen(navController = navController)
+    }
+    }
 
 
 

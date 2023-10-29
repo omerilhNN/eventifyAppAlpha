@@ -5,5 +5,6 @@ data class UpdateProfileData(
     val bio: String,
     val eventPreferences: List<Preference>,
     val interests: List<Preference>,
-    val musicPreferences: List<Preference>
+    val musicPreferences: List<Preference>,
+    val aboutMe:AboutMe
 )

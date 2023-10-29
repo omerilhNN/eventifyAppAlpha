@@ -4,6 +4,6 @@ data class ProfileUseCases(
     val getProfileUseCase: GetProfileUseCase,
     val updateProfileUseCase: UpdateProfileUseCase,
     val getEventPreferences: GetEventPreferencesUseCase,
-    val getMusicPreferences: GetEventPreferencesUseCase,
+    val getMusicPreferences: GetMusicPreferencesUseCase,
     val setPreferenceSelected: SetPreferencesUseCase,
 )

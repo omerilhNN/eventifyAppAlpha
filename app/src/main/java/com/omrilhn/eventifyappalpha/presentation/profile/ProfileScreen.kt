@@ -20,6 +20,7 @@ import com.omrilhn.eventifyappalpha.presentation.theme.SpaceMedium
 
 @Composable
 fun ProfileScreen(
+    navController:NavController,
     state:SnackbarHostState,
     imageLoader:ImageLoader,
     userId:String?=null,
